@@ -1,7 +1,13 @@
 import React from 'react';
+import BusinessDashboard from './../../ui/BusinessDashboard';
+import InsightsCard from '../../components/InsightsCard';
 
 function Dashboard() {
-  return <div>Dashboard Page</div>;
+  return (
+    <div>
+      <BusinessDashboard />
+    </div>
+  );
 }
 
 export default Dashboard;
