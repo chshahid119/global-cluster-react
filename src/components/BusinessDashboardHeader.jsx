@@ -43,10 +43,10 @@ function BusinessDashboardHeader() {
               alt="Profile Img of Business Account"
             />
             <div className="flex flex-col">
-              <p className="flex items-center gap-4 justify-between text-xl">
+              <p className="flex items-center gap-4 justify-between text-2xl">
                 Silas Oladipo <BiChevronDown />
               </p>
-              <p className="text-lg">@silasadahum</p>
+              <p className="text-lg text-gray-500">@silasadahum</p>
             </div>
           </div>
         </div>
