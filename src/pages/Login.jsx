@@ -1,7 +1,7 @@
 import React from 'react';
-import LoginHeader from './../../components/LoginHeader';
-import LoginPageImg from './../../assets/images/loginPageSideImg.jpeg';
-import LoginForm from './../../components/LoginForm';
+import LoginHeader from '../components/LoginHeader';
+import LoginPageImg from './../assets/images/loginPageSideImg.jpeg';
+import LoginForm from '../components/LoginForm';
 
 function Login() {
   return (
@@ -20,7 +20,6 @@ function Login() {
           </div>
         </div>
 
-        {/* Right side - Image with Gradient Overlay */}
         <div className="hidden lg:block w-8/12 relative">
           <div className="absolute inset-0 bg-gradient-to-b  from-sky-800 to-sky-700 opacity-70"></div>
           <img

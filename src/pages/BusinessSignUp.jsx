@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import LoginHeader from './../../components/LoginHeader';
-import LoginPageImg from './../../assets/images/loginPageSideImg.jpeg';
-import BusinessSignUpForm from './../../components/BusinessSignUpForm';
+import LoginHeader from '../components/LoginHeader';
+import LoginPageImg from './../assets/images/loginPageSideImg.jpeg';
+import BusinessSignUpForm from '../components/BusinessSignUpForm';
+import ComapnySizeInput from '../components/ComapnySizeInput';
 
 function BusinessSignUp() {
+  const [companySizeInputShow, SetCompanySizeInputShow] = useState(true);
+  const [companySize, setCompanySize] = useState();
   return (
     <div className="min-h-screen flex flex-col">
       <LoginHeader />
@@ -13,10 +16,24 @@ function BusinessSignUp() {
         <div className="w-full flex flex-col p-8 ">
           <div className="flex-grow flex flex-col  justify-center items-center">
             <div className="mt-20 w-[50%] flex flex-col gap-2">
-              <h2 className="text-4xl font-semibold mb-6 ml-6">
+              <h2
+                className={`text-4xl font-semibold mb-6 ml-6 ${
+                  companySizeInputShow === true ? null : 'hidden'
+                }`}
+              >
                 Get Started with Global Cluster as a Business
               </h2>
-              <BusinessSignUpForm />
+              {companySizeInputShow ? (
+                <BusinessSignUpForm
+                  companySizeInput={companySizeInputShow}
+                  SetCompanySizeInput={SetCompanySizeInputShow}
+                />
+              ) : (
+                <ComapnySizeInput
+                  companySize={companySize}
+                  setCompanySize={setCompanySize}
+                />
+              )}
             </div>
           </div>
         </div>

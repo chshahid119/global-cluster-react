@@ -5,13 +5,11 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import BusinessDashBoard from './features/Business/BusinessDashBoard';
-import AppLayout from './ui/AppLayout';
-import AdminDashboard from './features/Admin/AdminDashboard';
-import UserDashboard from './features/User/UserDashboard';
-import BusinessSignUp from './features/Business/BusinessSignUp';
-import Login from './features/Authentication/Login';
-import AdminLogin from './features/Admin/AdminLogin';
+import BusinessSignUp from './pages/BusinessSignUp';
+import Login from './pages/Login';
+import AdminLogin from './pages/AdminLogin';
+import BusinessLayout from './Layouts/BusinessLayout';
+import BusinessDashboard from './pages/BusinessDashBoard';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +21,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/business-signUp',
+    path: '/business-signup',
     element: <BusinessSignUp />,
   },
   {
@@ -31,20 +29,12 @@ const router = createBrowserRouter([
     element: <AdminLogin />,
   },
   {
-    path: '/',
-    element: <AppLayout />,
+    path: '/business',
+    element: <BusinessLayout />,
     children: [
       {
-        path: '/business-dashboard',
-        element: <BusinessDashBoard />,
-      },
-      {
-        path: '/admin-dashboard',
-        element: <AdminDashboard />,
-      },
-      {
-        path: '/user-dashboard',
-        element: <UserDashboard />,
+        path: 'dashboard',
+        element: <BusinessDashboard />,
       },
     ],
   },

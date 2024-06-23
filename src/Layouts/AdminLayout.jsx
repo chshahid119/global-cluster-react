@@ -1,11 +1,9 @@
 import React from 'react';
-import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 
-function AppLayout() {
+function AdminLayout() {
   return (
     <div>
-      <Sidebar />
       <main>
         <Outlet />
       </main>
@@ -13,4 +11,4 @@ function AppLayout() {
   );
 }
 
-export default AppLayout;
+export default AdminLayout;
