@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import BusinesSidebar from '../pages/BusinesSidebar';
+import BusinesSidebar from '../components/BusinesSidebar';
 
 function BusinessLayout() {
   return (

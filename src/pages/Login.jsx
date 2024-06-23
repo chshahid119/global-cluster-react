@@ -12,7 +12,7 @@ function Login() {
         <div className="w-full flex flex-col p-8 ">
           <div className="flex-grow flex flex-col  justify-center items-center">
             <div className="w-[50%] flex flex-col gap-2">
-              <h2 className="text-4xl font-semibold mb-6 ml-6">
+              <h2 className="text-3xl font-semibold mb-6 ml-6">
                 Login into your Global Cluster
               </h2>
               <LoginForm />

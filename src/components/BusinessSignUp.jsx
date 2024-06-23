@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import LoginHeader from '../components/LoginHeader';
+import LoginHeader from './LoginHeader';
 import LoginPageImg from './../assets/images/loginPageSideImg.jpeg';
-import BusinessSignUpForm from '../components/BusinessSignUpForm';
-import ComapnySizeInput from '../components/ComapnySizeInput';
+import BusinessSignUpForm from './BusinessSignUpForm';
+import ComapnySizeInput from './ComapnySizeInput';
 
 function BusinessSignUp() {
   const [companySizeInputShow, SetCompanySizeInputShow] = useState(true);

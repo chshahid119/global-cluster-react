@@ -57,7 +57,7 @@ function LoginForm() {
             className="w-full border border-gray-300 p-4 outline-none rounded-2xl"
           />
         </div>
-        <p className=" text-2xl ">
+        <p className=" text-xl ">
           Forgot password?{' '}
           <span className="font-bold cursor-pointer hover:underline">
             Reset Here
@@ -78,7 +78,7 @@ function LoginForm() {
           </NavLink>
         </div>
 
-        <div className="text-center text-2xl">
+        <div className="text-center text-xl">
           <NavLink to="/business-signUp">
             {`Don't `} Have an account,{' '}
             <span className="font-semibold hover:underline-offset-1">

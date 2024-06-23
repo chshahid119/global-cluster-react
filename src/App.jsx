@@ -5,11 +5,15 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import BusinessSignUp from './pages/BusinessSignUp';
+import BusinessSignUp from './components/BusinessSignUp';
 import Login from './pages/Login';
-import AdminLogin from './pages/AdminLogin';
+import AdminLogin from './components/AdminLogin';
 import BusinessLayout from './Layouts/BusinessLayout';
-import BusinessDashboard from './pages/BusinessDashBoard';
+import BusinessDashboard from './pages/Business/Dashboard';
+import BusinessProducts from './ui/BusinessProducts';
+import BusinessSupportTicket from './ui/BusinessSupportTicket';
+import BusinessSettings from './ui/BusinessSettings';
+import BusinessSignOut from './ui/BusinessSignOut';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +39,22 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <BusinessDashboard />,
+      },
+      {
+        path: 'products',
+        element: <BusinessProducts />,
+      },
+      {
+        path: 'support-ticket',
+        element: <BusinessSupportTicket />,
+      },
+      {
+        path: 'settings',
+        element: <BusinessSettings />,
+      },
+      {
+        path: 'sign-out',
+        element: <BusinessSignOut />,
       },
     ],
   },

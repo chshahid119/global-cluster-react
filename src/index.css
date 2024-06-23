@@ -31,4 +31,5 @@ body {
 
 .active {
   background-color: #0369a1;
+  border-radius: 1rem;
 }
