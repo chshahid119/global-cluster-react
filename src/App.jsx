@@ -16,22 +16,22 @@ import BusinessSettings from './ui/BusinessSettings';
 import BusinessSignOut from './ui/BusinessSignOut';
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Navigate to="/login" replace />, // Redirect root to login
-  },
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/business-signup',
-    element: <BusinessSignUp />,
-  },
-  {
-    path: '/admin-login',
-    element: <AdminLogin />,
-  },
+  // {
+  //   path: '/',
+  //   element: <Navigate to="/login" replace />, // Redirect root to login
+  // },
+  // {
+  //   path: '/login',
+  //   element: <Login />,
+  // },
+  // {
+  //   path: '/business-signup',
+  //   element: <BusinessSignUp />,
+  // },
+  // {
+  //   path: '/admin-login',
+  //   element: <AdminLogin />,
+  // },
   {
     path: '/business',
     element: <BusinessLayout />,
