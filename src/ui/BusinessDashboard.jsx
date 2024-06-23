@@ -29,7 +29,10 @@ function BusinessDashboard() {
         <TrafficReportGraph />
         <TopProducts />
       </div>
-      <ProductsBusiness />
+
+      <div className="px-6 py-6 ">
+        <ProductsBusiness />
+      </div>
     </div>
   );
 }

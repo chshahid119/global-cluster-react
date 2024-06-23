@@ -19,7 +19,7 @@ function GrowBusinessCard() {
           Go to Products
         </NavLink>
       </div>
-      <div className="bg-sky-600 opacity-90 p-3 rounded-full translate-x-20 ">
+      <div className="bg-sky-600 opacity-90 p-3 rounded-full translate-x-48 -rotate-12">
         <img className="" src={HeartImg} alt="heart blue img" />
       </div>
     </div>
