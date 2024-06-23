@@ -1,6 +1,6 @@
 import React from 'react';
 import BusinessDashboard from './../../ui/BusinessDashboard';
-import InsightsCard from '../../components/InsightsCard';
+// import InsightsCard from '../../components/InsightsCard';
 
 function Dashboard() {
   return (
