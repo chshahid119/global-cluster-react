@@ -7,7 +7,7 @@ function HeaderSearch() {
 
     
     
-      <div className="flex items-center gap-16 justify-around  bg-[#f9fafb]  py-4 px-20">
+      <div className="flex items-center gap-6 w-[50rem] bg-[#f9fafb]  py-5 px-10">
           <div className="">
             <FaSearch style={{ color: '#0369a1', fontSize: '1.5rem' }} />
           </div>

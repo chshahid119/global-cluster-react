@@ -9,7 +9,7 @@ import { BsTicketPerforated } from 'react-icons/bs';
 
 function BusinesSidebar() {
   return (
-    <div className="flex  flex-col gap-8 divide-y items-center">
+    <div className="flex  flex-col gap-6 items-center">
       <SidebarLogo />
       <nav>
         <ul className="flex flex-col gap-4 p-20 text-white">
@@ -23,7 +23,7 @@ function BusinesSidebar() {
             <li className="flex gap-6 items-center ">
               <AiOutlineProduct className="text-4xl" />
               <p>Products</p>
-            </li>
+            </li> 
           </NavLink>
           <NavLink to="support-ticket" className="py-4 px-4">
             <li className="flex gap-6 items-center ">

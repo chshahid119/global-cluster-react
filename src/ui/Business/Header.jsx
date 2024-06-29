@@ -10,13 +10,13 @@ import USAFlag from './../../assets/images/usa.png';
 function Header() {
   return (
     <div>
-      <div className="flex items-center justify-between shadow-sm px-4 py-6">
+      <div className="flex items-center justify-between shadow-sm px-10 py-10">
         <HeaderSearch/>
         <div className="flex gap-8 items-center justify-between">
           <div className="flex gap-4 bg-[#f9fafb] py-4 px-6 rounded-md">
             <img className="w-10" src={USAFlag} alt="usa flag" />
             <select
-              className="outline-none bg-[#f9fafb]"
+              className="outline-none bg-[#f9fafb] cursor-pointer"
               name="language"
               id="language"
             >

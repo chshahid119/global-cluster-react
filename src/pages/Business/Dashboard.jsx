@@ -3,8 +3,8 @@ import React from 'react';
 import BusinessDashboardHeader from './../../ui/Business/Header';
 import InsightsCard from '../../ui/Business/InsightsCard';
 import GrowBusinessCard from '../../ui/Business/GrowBusinessCard';
-import TrafficReportGraph from './../../components/TrafficReportGraph';
-import TopProducts from './../../components/TopProducts';
+import TrafficReportGraph from '../../ui/Business/TrafficReportGraph';
+import TopProducts from './../../ui/Business/TopProducts';
 import ProductsBusiness from '../../ui/Business/ProductsBusiness';
 
 function Dashboard() {
@@ -12,7 +12,7 @@ function Dashboard() {
     <div>
     
       <BusinessDashboardHeader />
-      <div className="px-8 py-10 flex gap-12 flex-wrap">
+      <div className="px-6 py-10 flex gap-6 flex-wrap">
         <InsightsCard
           CardName="Total Share"
           TotalCount="40,689"

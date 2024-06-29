@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+// Sample data for the bar chart
 const data = [
   { month: 'Jan', views: 230 },
   { month: 'Feb', views: 180 },
