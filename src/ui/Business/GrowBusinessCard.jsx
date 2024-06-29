@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import HeartImg from './../assets/images/heart.png';
+import HeartImg from './../../assets/images/heart.png';
 
 function GrowBusinessCard() {
   return (

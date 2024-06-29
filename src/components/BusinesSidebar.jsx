@@ -9,7 +9,7 @@ import { BsTicketPerforated } from 'react-icons/bs';
 
 function BusinesSidebar() {
   return (
-    <div className="flex  flex-col gap-8 items-center">
+    <div className="flex  flex-col gap-8 divide-y items-center">
       <SidebarLogo />
       <nav>
         <ul className="flex flex-col gap-4 p-20 text-white">
