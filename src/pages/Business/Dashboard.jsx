@@ -1,18 +1,18 @@
 import React from 'react';
 
-import BusinessDashboardHeader from './../components/BusinessDashboardHeader';
-import InsightsCard from './../components/InsightsCard';
-import GrowBusinessCard from '../components/GrowBusinessCard';
-import TrafficReportGraph from './../components/TrafficReportGraph';
-import TopProducts from './../components/TopProducts';
-import ProductsBusiness from './../components/ProductsBusiness';
+import BusinessDashboardHeader from './../../ui/Business/Header';
+import InsightsCard from '../../ui/Business/InsightsCard';
+import GrowBusinessCard from '../../ui/Business/GrowBusinessCard';
+import TrafficReportGraph from '../../ui/Business/TrafficReportGraph';
+import TopProducts from './../../ui/Business/TopProducts';
+import ProductsBusiness from '../../ui/Business/ProductsBusiness';
 
 function Dashboard() {
   return (
     <div>
     
       <BusinessDashboardHeader />
-      <div className="px-6 py-10 flex gap-12 flex-wrap">
+      <div className="px-6 py-10 flex gap-6 flex-wrap">
         <InsightsCard
           CardName="Total Share"
           TotalCount="40,689"
@@ -25,7 +25,7 @@ function Dashboard() {
           TotalIncDec="1.3"
         />
 
-        <GrowBusinessCard />
+        <GrowBusinessCard/>
       </div>
       <div className="px-6 py-6 flex gap-6">
         <TrafficReportGraph />

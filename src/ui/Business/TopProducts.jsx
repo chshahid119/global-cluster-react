@@ -1,5 +1,5 @@
 import React from 'react';
-import BusinessProductImg from './../assets/images/productImg.png';
+import BusinessProductImg from './../../assets/images/productImg.png';
 
 const TopProducts = () => {
   const products = [
@@ -11,9 +11,9 @@ const TopProducts = () => {
   ];
 
   return (
-    <div className="bg-white p-6  flex-1 flex flex-col shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl">
+    <div className="bg-white p-6  flex-1 flex flex-col gap-2 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl">
       <h2 className="text-xl font-semibold mb-4">Top Products</h2>
-      <div className="flex  justify-between text-xl text-gray-500 mb-4">
+      <div className="flex  justify-between text-xl text-gray-500 mb-4 border-b">
         <span>Name</span>
         <span>Shares</span>
       </div>

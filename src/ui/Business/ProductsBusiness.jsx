@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
 import { IoEyeOutline } from 'react-icons/io5';
-import BusinessProductImg from './../assets/images/productImg.png';
+import BusinessProductImg from './../../assets/images/productImg.png';
 
 // Define table headers
 const headers = [

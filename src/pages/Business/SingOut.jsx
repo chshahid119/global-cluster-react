@@ -1,7 +1,8 @@
 import React from 'react';
+import BusinessDashboardHeader from './../../ui/Business/Header';
 
 function SignOut() {
-  return <div>BusinessSignOut</div>;
+  return <div> <BusinessDashboardHeader /></div>;
 }
 
 export default SignOut;
