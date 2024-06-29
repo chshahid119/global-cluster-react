@@ -10,10 +10,11 @@ import Login from './pages/Login';
 import AdminLogin from './components/AdminLogin';
 import BusinessLayout from './Layouts/BusinessLayout';
 import BusinessDashboard from './pages/Business/Dashboard';
-import BusinessProducts from './ui/BusinessProducts';
-import BusinessSupportTicket from './ui/BusinessSupportTicket';
-import BusinessSettings from './ui/BusinessSettings';
-import BusinessSignOut from './ui/BusinessSignOut';
+import BusinessProducts from './pages/Business/Products';
+import BusinessSupportTicket from './pages/Business/SupportTicket';
+import BusinessSettings from './pages/Business/Settings';
+import BusinessSignOut from './pages/Business/SingOut';
+
 
 const router = createBrowserRouter([
   {

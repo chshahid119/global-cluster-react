@@ -1,7 +1,7 @@
 import React from 'react';
 
-function BusinessProducts() {
+function Products() {
   return <div>Product Page</div>;
 }
 
-export default BusinessProducts;
+export default Products;
