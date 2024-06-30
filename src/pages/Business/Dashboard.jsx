@@ -1,16 +1,15 @@
 import React from 'react';
 
-import BusinessDashboardHeader from './../../ui/Business/Header';
-import InsightsCard from '../../ui/Business/InsightsCard';
-import GrowBusinessCard from '../../ui/Business/GrowBusinessCard';
-import TrafficReportGraph from '../../ui/Business/TrafficReportGraph';
-import TopProducts from './../../ui/Business/TopProducts';
-import ProductsBusiness from '../../ui/Business/ProductsBusiness';
+import BusinessDashboardHeader from '../../components/ui/Header';
+import InsightsCard from '../../components/ui/InsightsCard';
+import GrowBusinessCard from '../../components/ui/GrowBusinessCard';
+import TrafficReportGraph from '../../components/ui/TrafficReportGraph';
+import TopProducts from '../../components/ui/TopProducts';
+import ProductsBusiness from '../../components/ui/ProductsBusiness';
 
 function Dashboard() {
   return (
     <div>
-    
       <BusinessDashboardHeader />
       <div className="px-6 py-10 flex gap-6 flex-wrap">
         <InsightsCard
@@ -25,7 +24,7 @@ function Dashboard() {
           TotalIncDec="1.3"
         />
 
-        <GrowBusinessCard/>
+        <GrowBusinessCard />
       </div>
       <div className="px-6 py-6 flex gap-6">
         <TrafficReportGraph />
@@ -35,7 +34,6 @@ function Dashboard() {
       <div className="px-6 py-6 ">
         <ProductsBusiness />
       </div>
-  
     </div>
   );
 }
