@@ -13,31 +13,31 @@ function BusinesSidebar() {
       <SidebarLogo />
       <nav>
         <ul className="flex flex-col gap-4 p-20 text-white">
-          <NavLink to="dashboard" className="py-4 px-4">
+          <NavLink to="dashboard" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <LuPieChart className="text-4xl" />
               <p>Dashboard</p>
             </li>
           </NavLink>
-          <NavLink to="products" className="py-4 px-4">
+          <NavLink to="products" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <AiOutlineProduct className="text-4xl" />
               <p>Products</p>
             </li> 
           </NavLink>
-          <NavLink to="support-ticket" className="py-4 px-4">
+          <NavLink to="support-ticket" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <BsTicketPerforated className="text-4xl" />
               <p>Support Ticket</p>
             </li>
           </NavLink>
-          <NavLink to="settings" className="py-4 px-4">
+          <NavLink to="settings" className="py-4 px-8">
             <li className="flex gap-6 items-center justify-start ">
               <IoSettingsOutline className="text-4xl" />
               <p>Settings</p>
             </li>
           </NavLink>
-          <NavLink to="sign-out" className="py-4 px-4">
+          <NavLink to="sign-out" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <PiSignOutFill className="text-4xl" />
               <p>Sign Out</p>

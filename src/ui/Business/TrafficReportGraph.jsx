@@ -34,11 +34,12 @@ function TrafficReportChart() {
           Last 12 Months <BiChevronDown style={{ fontSize: '2.5rem' }} />
         </p>
       </div>
-      <ResponsiveContainer width="100%" height={200}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={data}
           barCategoryGap="30%" // Increase space between categories (bars)
           barGap={4} // Increase space between individual bars (for multiple bars in a category)
+          margin={{ top: 20, right: 20, bottom: 20, left: 20 }} // Add margins around the chart
         >
           <XAxis
             dataKey="month"
