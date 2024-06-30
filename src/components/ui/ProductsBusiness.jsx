@@ -100,7 +100,7 @@ function ProductsBusiness() {
     const isChecked = e.target.checked;
     if (isChecked) {
       const allRowIndexes = new Set(
-        BusinessProductsData.map((_, index) => index)
+        BusinessProductsData.map((_, index) => index),
       );
       setSelectedRows(allRowIndexes);
     } else {
@@ -132,9 +132,7 @@ function ProductsBusiness() {
 
   // Filtered data based on selected months
   const filteredData = Array.from(selectedMonths).length
-    ? BusinessProductsData.filter(product =>
-        selectedMonths.has(product.month)
-      )
+    ? BusinessProductsData.filter(product => selectedMonths.has(product.month))
     : BusinessProductsData;
 
   // Toggle for showing the month filter dropdown

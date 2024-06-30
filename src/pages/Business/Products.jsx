@@ -1,29 +1,25 @@
 import React from 'react';
-import BusinessDashboardHeader from './../../ui/Business/Header';
-
-import { GoChevronRight } from "react-icons/go";
-import Button from './../../components/Button';
-
-
+import ProductPageHeader from '../../components/ui/ProductPageHeader';
+import BusinessDashboardHeader from '../../components/ui/Header';
+import Filter from '../../components/ui/Filter';
+import ProductsTicket from '../../components/ui/ProductTickets';
+import ProductTable from '../../components/ui/ProductTable';
 
 function Products() {
   return (
-    <div className=''>
+    <div className="flex flex-col gap-8">
       <BusinessDashboardHeader />
-      
+      <main className="m-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md">
+        <div className="py-20 px-20 flex flex-col gap-10">
+          <ProductPageHeader />
+          <ProductsTicket />
 
-      <section className='px-10 py-14 flex justify-between items-center'>
-      <div className='flex flex-col gap-4 px-20 py-20 '>
-        <h2 className='font-bold text-4xl'>Product</h2>
-        <div className='flex gap-2 items-center'>
-          <p className='text-red-600'>Dasboard</p> 
-          <GoChevronRight />
-          <p>Product</p>
+          <div className="flex flex-col gap-6">
+            <Filter />
+            <ProductTable />
+          </div>
         </div>
-      </div>
-     <Button/>
-      </section>
-      
+      </main>
     </div>
   );
 }

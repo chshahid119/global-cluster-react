@@ -1,24 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { PropTypes } from 'prop-types';
 import { FaSearch } from 'react-icons/fa';
 
-
-function HeaderSearch() {
+function HeaderSearch({ placeholder = 'Search here....' }) {
   return (
-
-    
-    
-      <div className="flex items-center gap-6 w-[50rem] bg-[#f9fafb]  py-5 px-10">
-          <div className="">
-            <FaSearch style={{ color: '#0369a1', fontSize: '1.5rem' }} />
-          </div>
-          <input
-            type="text"
-            className="bg-[#f9fafb] outline-none  rounded-xl "
-            placeholder="Search Here...."
-          />
-        </div>
-
-  )
+    <div className="flex gap-6 bg-[#f9fafb] py-5 px-4 items-center">
+      <FaSearch style={{ color: '#0369a1', fontSize: '1.5rem' }} />
+      <input
+        className="bg-[#f9fafb] w-full outline-none border-none"
+        type="text"
+        placeholder={placeholder}
+      />
+    </div>
+  );
 }
 
-export default HeaderSearch
+HeaderSearch.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+};
+
+export default HeaderSearch;
