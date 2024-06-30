@@ -5,7 +5,7 @@ import BusinessProductImg from './../../assets/images/productImg.png';
 
 // Define table headers
 const headers = [
-  'ProductName',
+  'Product Name',
   'Description',
   'No of Shares',
   'Traffic',
@@ -13,7 +13,7 @@ const headers = [
   'Action',
 ];
 
-// Define table data
+// Define table data with month property
 const BusinessProductsData = [
   {
     name: 'Lorem Ipsum',
@@ -22,6 +22,7 @@ const BusinessProductsData = [
     noShares: '423',
     traffic: '1200',
     status: 'active',
+    month: 'January', // Added month
     action: <IoEyeOutline />,
   },
   {
@@ -30,6 +31,7 @@ const BusinessProductsData = [
     noShares: '423',
     traffic: '1200',
     status: 'active',
+    month: 'February', // Added month
     action: <IoEyeOutline />,
   },
   {
@@ -38,6 +40,7 @@ const BusinessProductsData = [
     noShares: '423',
     traffic: '1200',
     status: 'decline',
+    month: 'March', // Added month
     action: <IoEyeOutline />,
   },
   {
@@ -47,6 +50,7 @@ const BusinessProductsData = [
     noShares: '423',
     traffic: '1200',
     status: 'active',
+    month: 'January', // Added month
     action: <IoEyeOutline />,
   },
   {
@@ -55,6 +59,7 @@ const BusinessProductsData = [
     noShares: '423',
     traffic: '1200',
     status: 'decline',
+    month: 'February', // Added month
     action: <IoEyeOutline />,
   },
 ];
@@ -69,15 +74,33 @@ const truncateText = (text, wordLimit) => {
 };
 
 function ProductsBusiness() {
-  // State to manage the selected checkboxes
+  // State to manage the selected checkboxes for rows
   const [selectedRows, setSelectedRows] = useState(new Set());
+  // State to manage the selected months for filtering
+  const [selectedMonths, setSelectedMonths] = useState(new Set());
+
+  // List of all months for filtering
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   // Handler for header checkbox change
   const handleHeaderCheckboxChange = e => {
     const isChecked = e.target.checked;
     if (isChecked) {
       const allRowIndexes = new Set(
-        BusinessProductsData.map((_, index) => index),
+        BusinessProductsData.map((_, index) => index)
       );
       setSelectedRows(allRowIndexes);
     } else {
@@ -96,19 +119,55 @@ function ProductsBusiness() {
     setSelectedRows(updatedSelectedRows);
   };
 
-  // Determine if all rows are selected
-  const isAllSelected = selectedRows.size === BusinessProductsData.length;
-  // Determine if some rows are selected
-  const isIndeterminate =
-    selectedRows.size > 0 && selectedRows.size < BusinessProductsData.length;
+  // Handler for selecting months from dropdown
+  const handleMonthSelect = month => {
+    const updatedSelectedMonths = new Set(selectedMonths);
+    if (updatedSelectedMonths.has(month)) {
+      updatedSelectedMonths.delete(month);
+    } else {
+      updatedSelectedMonths.add(month);
+    }
+    setSelectedMonths(updatedSelectedMonths);
+  };
+
+  // Filtered data based on selected months
+  const filteredData = Array.from(selectedMonths).length
+    ? BusinessProductsData.filter(product =>
+        selectedMonths.has(product.month)
+      )
+    : BusinessProductsData;
+
+  // Toggle for showing the month filter dropdown
+  const [showMonthDropdown, setShowMonthDropdown] = useState(false);
 
   return (
     <div className="px-6 py-4 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl bg-white">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Products</h2>
-        <div className="flex gap-2 items-center text-gray-500 border px-3 py-2 rounded-md cursor-pointer">
-          <p className="text-xl font-semibold">October</p>
-          <BiChevronDown style={{ fontSize: '1.5rem' }} />
+        {/* Month Filter Dropdown */}
+        <div className="relative">
+          <button
+            onClick={() => setShowMonthDropdown(!showMonthDropdown)}
+            className="flex gap-2 items-center text-gray-500 border px-3 py-2 rounded-md cursor-pointer"
+          >
+            <p className="text-xl font-semibold">Filter by Month</p>
+            <BiChevronDown style={{ fontSize: '1.5rem' }} />
+          </button>
+          {showMonthDropdown && (
+            <div className="absolute top-12 left-0 mt-2 w-40 bg-white border rounded-md shadow-lg">
+              {months.map(month => (
+                <div
+                  key={month}
+                  onClick={() => handleMonthSelect(month)}
+                  className={`flex items-center p-2 hover:bg-gray-100 cursor-pointer ${
+                    selectedMonths.has(month) ? 'bg-primary text-white' : ''
+                  }`}
+                >
+                  {month}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -118,19 +177,20 @@ function ProductsBusiness() {
           <thead className="bg-gray-50 text-gray-700">
             <tr>
               <th className="px-6 py-3">
-                <input
-                  type="checkbox"
-                  checked={isAllSelected}
-                  onChange={handleHeaderCheckboxChange}
-                  ref={input => {
-                    if (input) input.indeterminate = isIndeterminate;
-                  }}
-                />
+                <div className="flex items-center justify-center h-full">
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.size === BusinessProductsData.length}
+                    onChange={handleHeaderCheckboxChange}
+                    className="align-middle cursor-pointer"
+                  />
+                </div>
               </th>
               {headers.map(header => (
                 <th
                   key={header}
                   className="px-6 py-3 text-left text-lg font-medium uppercase tracking-wider"
+                  style={header === 'Product Name' ? { minWidth: '200px' } : {}}
                 >
                   {header}
                 </th>
@@ -139,14 +199,17 @@ function ProductsBusiness() {
           </thead>
           {/* Table Body */}
           <tbody className="bg-white divide-y divide-gray-200">
-            {BusinessProductsData.map((product, index) => (
+            {filteredData.map((product, index) => (
               <tr key={index} className="hover:bg-gray-50">
                 <td className="px-6 py-4">
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.has(index)}
-                    onChange={() => handleRowCheckboxChange(index)}
-                  />
+                  <div className="flex items-center justify-center h-full">
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.has(index)}
+                      onChange={() => handleRowCheckboxChange(index)}
+                      className="align-middle cursor-pointer"
+                    />
+                  </div>
                 </td>
                 <td className="px-6 py-4 flex items-center">
                   <div className="bg-orange-100 p-2 rounded-md mr-3">
