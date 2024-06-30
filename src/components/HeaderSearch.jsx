@@ -16,7 +16,7 @@ function HeaderSearch({ placeholder = 'Search here....' }) {
 }
 
 HeaderSearch.propTypes = {
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
 };
 
 export default HeaderSearch;

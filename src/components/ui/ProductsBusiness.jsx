@@ -141,7 +141,6 @@ function ProductsBusiness() {
   return (
     <div className="px-6 py-4 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl bg-white">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Products</h2>
         {/* Month Filter Dropdown */}
         <div className="relative">
           <button

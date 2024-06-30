@@ -1,15 +1,21 @@
-import React from 'react'
-import { IoMdAdd } from "react-icons/io";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { IoMdAdd } from 'react-icons/io';
 
-
-function Button() {
+function Button({ btnText }) {
   return (
-    <div className='bg-primary-light text-white font-semibold w-fit 
-    px-4 py-4 rounded-md flex items-center justify-center gap-4 hover:bg-primary-dark cursor-pointer'>
+    <div
+      className="bg-primary-light text-white font-semibold w-fit 
+    px-4 py-4 rounded-md flex items-center justify-center gap-4 hover:bg-primary-dark cursor-pointer"
+    >
       <IoMdAdd />
-    <p>Add new Product</p>
+      <p>{btnText}</p>
     </div>
-  )
+  );
 }
 
-export default Button
+Button.propTypes = {
+  btnText: PropTypes.string,
+};
+
+export default Button;
