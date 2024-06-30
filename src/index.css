@@ -33,3 +33,8 @@ body {
   background-color: #0369a1;
   border-radius: 1rem;
 }
+
+th,
+td {
+  padding: 1rem;
+}
