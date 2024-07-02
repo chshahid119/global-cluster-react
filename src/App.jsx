@@ -59,6 +59,52 @@ const router = createBrowserRouter([
       },
     ],
   },
+    {
+    path: '/user',
+    element: <UserLayout />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <UserDashboard />,
+      },
+      {
+        path: 'network',
+        element: <UserNetwork />,
+      },
+      {
+        path: 'register',
+        element: <UserRegister />,
+      },
+      {
+        path: 'registrations',
+        element: <UserRegistrations />,
+      },
+      {
+        path: 'remote-and-earn',
+        element: <UserRemoteAndEarn />,
+      },
+        {
+        path: 'wallet',
+        element: <UserWallet />,
+      },
+      {
+        path: 'payout',
+        element: <UserPayOut />,
+      },
+      {
+        path: 'support-ticket',
+        element: <UserSupportTicket />,
+      },
+      {
+        path: 'settings',
+        element: <UserSettings />,
+      },
+      {
+        path: 'sign-out',
+        element: <UserSignOut />,
+      },
+    ],
+  },
   {
     path: '*',
     element: <Navigate to="/login" replace />, // Redirect any unmatched paths to login
