@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{createContext,useState} from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -26,6 +26,7 @@ import UserPayOut from './pages/User/UserPayOut';
 import UserSupportTicket from './pages/User/UserSupportTicket';
 import UserSettings from './pages/User/UserSettings';
 import UserSignOut from './pages/User/UserSignOut';
+import UserProducts from './pages/User/UserProducts';
 
 
 const router = createBrowserRouter([
@@ -87,13 +88,17 @@ const router = createBrowserRouter([
         path: 'register',
         element: <UserRegister />,
       },
-      {
+      { 
         path: 'registrations',
         element: <UserRegistrations />,
       },
       {
         path: 'remote-and-earn',
         element: <UserRemoteAndEarn />,
+      },
+      {
+        path: 'products',
+        element: <UserProducts />,
       },
         {
         path: 'wallet',
@@ -123,8 +128,19 @@ const router = createBrowserRouter([
   },
 ]);
 
+ export const ProductContext = createContext();
+
 function App() {
-  return <RouterProvider router={router} />;
+
+  const [showProduct,setShowProduct]=useState(false);
+
+
+
+  return <div className={`relative ${showProduct === true ? 'bg-gray-200': null}`}>
+    <ProductContext.Provider value={{showProduct,setShowProduct}}>
+  <RouterProvider router={router} />
+  </ProductContext.Provider>
+  </div>
 }
 
 export default App;
