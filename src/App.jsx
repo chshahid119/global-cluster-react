@@ -1,21 +1,17 @@
-import React,{createContext,useState} from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from 'react-router-dom';
+import React, { createContext, useState } from 'react';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
 import BusinessSignUp from './components/BusinessSignUp';
 import Login from './pages/Login';
 import AdminLogin from './components/AdminLogin';
 import BusinessLayout from './Layouts/BusinessLayout';
 import BusinessDashboard from './pages/Business/Dashboard';
-import BusinessProducts from './pages/Business/Products';
+import BusinessProducts from './pages/Business/Products'; // Import should be before usage
 import BusinessSupportTicket from './pages/Business/SupportTicket';
 import BusinessSettings from './pages/Business/Settings';
 import BusinessSignOut from './pages/Business/SingOut';
 
-import UserLayout from "./Layouts/UserLayout"
+import UserLayout from './Layouts/UserLayout';
 import UserDashboard from './pages/User/UserDashboard';
 import UserNetwork from './pages/User/UserNetwork';
 import UserRegister from './pages/User/UserRegister';
@@ -27,7 +23,6 @@ import UserSupportTicket from './pages/User/UserSupportTicket';
 import UserSettings from './pages/User/UserSettings';
 import UserSignOut from './pages/User/UserSignOut';
 import UserProducts from './pages/User/UserProducts';
-
 
 const router = createBrowserRouter([
   {
@@ -56,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <BusinessProducts />,
+        element: <BusinessProducts />, // Ensure BusinessProducts is imported correctly
       },
       {
         path: 'support-ticket',
@@ -72,7 +67,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-    {
+  {
     path: '/user',
     element: <UserLayout />,
     children: [
@@ -88,7 +83,7 @@ const router = createBrowserRouter([
         path: 'register',
         element: <UserRegister />,
       },
-      { 
+      {
         path: 'registrations',
         element: <UserRegistrations />,
       },
@@ -100,7 +95,7 @@ const router = createBrowserRouter([
         path: 'products',
         element: <UserProducts />,
       },
-        {
+      {
         path: 'wallet',
         element: <UserWallet />,
       },
@@ -128,19 +123,18 @@ const router = createBrowserRouter([
   },
 ]);
 
- export const ProductContext = createContext();
+export const ModalContext = createContext();
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
 
-  const [showProduct,setShowProduct]=useState(false);
-
-
-
-  return <div className={`relative ${showProduct === true ? 'bg-gray-200': null}`}>
-    <ProductContext.Provider value={{showProduct,setShowProduct}}>
-  <RouterProvider router={router} />
-  </ProductContext.Provider>
-  </div>
+  return (
+    <div className={`${showModal === true ? 'relative' : null}`}>
+      <ModalContext.Provider value={{ showModal, setShowModal }}>
+        <RouterProvider router={router} />
+      </ModalContext.Provider>
+    </div>
+  );
 }
 
 export default App;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import BusinessDashboardHeader from '../../components/ui/Header';
 import PageDataHeader from '../../components/ui/PageDataHeader';
 import SupportTicketCard from '../../components/ui/SupportTicketCard';
@@ -64,9 +64,29 @@ const ticketsData = [
 ];
 
 function SupportTicket() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // Number of items per page
+
+  // Calculate total pages based on data length and items per page
+  const totalPages = Math.ceil(ticketsData.length / itemsPerPage);
+
+  // Function to handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate start and end index for current page
+  const startIndex = (currentPage - 1) * itemsPerPage + 1;
+  const endIndex = Math.min(currentPage * itemsPerPage, ticketsData.length);
+
+  // Slice the data array based on currentPage and itemsPerPage
+  const paginatedData = ticketsData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <div>
-      {' '}
       <BusinessDashboardHeader />
       <main className="mx-10 my-10 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md">
         <section className="px-10 py-10">
@@ -85,8 +105,8 @@ function SupportTicket() {
           <div className="p-8 flex flex-col gap-10">
             <Filter />
             <TableData
-              type="supportTicket"
-              data={ticketsData}
+              type="default"
+              data={paginatedData}
               tableHeadNames={[
                 'Reference Id',
                 'Date',
@@ -96,7 +116,11 @@ function SupportTicket() {
                 'Priority',
               ]}
             />
-            <Pagination />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </section>
       </main>
