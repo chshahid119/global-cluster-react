@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-
+import { useLoaderData } from 'react-router-dom';
 import { ModalContext } from "./../../App"
 
 import PageDataHeader from '../../components/ui/PageDataHeader';
@@ -11,6 +11,7 @@ import Pagination from '../../components/Pagination';
 import Button from '../../components/Button';
 import AddProduct from '../../components/AddProduct';
 import Modal from '../../components/Modal';
+import { fetchProducts } from '../../services/api';
 
 const initialProductsData = [
   {
@@ -113,14 +114,19 @@ const initialProductsData = [
 ];
 
 function Products() {
+
   const { showModal, setShowModal } = useContext(ModalContext);
-  const [productsData, setProductsData] = useState(initialProductsData);
+  const fetchedProductsData = useLoaderData();
+   const [productsData, setProductsData] = useState(fetchedProductsData);
+  
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 5; // Number of items per page
+ 
+
+  const itemsPerPage = 7; 
 
   function addNewProduct(newProduct) {
-    // Logic to add new product to productsData array
+    
     const updatedProduct={
       ...newProduct,
       shares: 10,
@@ -173,6 +179,7 @@ function Products() {
           )}
 
           <ProductsTicket />
+         
 
           <div className="flex flex-col gap-6 ">
             <Filter />
@@ -201,6 +208,20 @@ function Products() {
     </div>
   );
 }
+
+export async function loader(){
+  const productsData= await fetchProducts();
+
+  return productsData
+}
+
+// export async function action({request}){
+//    const productData=request.formData()
+//    const data=Object.fromEntries(productData)
+//    console.log(data)
+
+//    return null;
+// }
 
 export default Products;
 
