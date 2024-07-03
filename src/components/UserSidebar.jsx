@@ -12,7 +12,13 @@ function UserSidebar() {
     <div className="flex  flex-col gap-6 items-center">
       <SidebarLogo />
       <nav>
-        <ul className="flex flex-col gap-4 p-20 text-white">
+        <ul className="flex flex-col gap-6 p-20 text-white">
+         <NavLink to="dashboard" className="py-4 px-8 ">
+            <li className="flex gap-6 items-center ">
+              <LuPieChart className="text-4xl" />
+              <p>Dashboard</p>
+            </li>
+          </NavLink>
           <NavLink to="network" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <LuPieChart className="text-4xl" />
