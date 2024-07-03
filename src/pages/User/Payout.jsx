@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserPayOut() {
+function Payout() {
   return (
     <div>UserPayOut</div>
   )
 }
 
-export default UserPayOut
+export default Payout

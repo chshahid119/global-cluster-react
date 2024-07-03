@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserRegistrations() {
+function Registrations() {
   return (
     <div>UserRegistrations</div>
   )
 }
 
-export default UserRegistrations
+export default Registrations

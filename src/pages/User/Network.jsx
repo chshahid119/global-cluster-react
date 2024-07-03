@@ -1,9 +1,13 @@
 import React from 'react'
 
-function UserNetwork() {
+function Network() {
   return (
-    <div>UserNetwork</div>
+   <div className='p-20 bg-gray-50 h-full w-full'>
+      <div className='border bg-white'>
+        User/Network
+      </div>
+    </div>
   )
 }
 
-export default UserNetwork
+export default Network

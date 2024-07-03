@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserRemoteAndEarn() {
+function RemoteAndEarn() {
   return (
     <div>UserRemoteAndEarn</div>
   )
 }
 
-export default UserRemoteAndEarn
+export default RemoteAndEarn

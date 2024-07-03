@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserSupportTicket() {
+function SupportTicket() {
   return (
     <div>UserSupportTicket</div>
   )
 }
 
-export default UserSupportTicket
+export default SupportTicket

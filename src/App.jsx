@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import AdminLogin from './components/AdminLogin';
 import BusinessLayout from './Layouts/BusinessLayout';
 import BusinessDashboard from './pages/Business/Dashboard';
-import BusinessProducts from './pages/Business/Products'; // Import should be before usage
+import BusinessProducts,{loader as productLoader } from './pages/Business/Products'; 
 import BusinessSupportTicket from './pages/Business/SupportTicket';
 import BusinessSettings from './pages/Business/Settings';
 import BusinessSignOut from './pages/Business/SingOut';
@@ -51,7 +51,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <BusinessProducts />, // Ensure BusinessProducts is imported correctly
+        element: <BusinessProducts />,
+        loader: productLoader,
+     
       },
       {
         path: 'support-ticket',
