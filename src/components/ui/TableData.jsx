@@ -6,7 +6,7 @@ import { IoEyeOutline } from 'react-icons/io5';
 
 import ProductImg from './../../assets/images/productImg.png';
 
-function TableData({ data = [], tableHeadNames = [], type = 'default' }) {
+function TableData({ data = [], tableHeadNames = [], type = 'default',onDelete }) {
   // Safeguard in DecreaseDescription to handle undefined descriptions
   function DecreaseDescription(description) {
     if (!description) return ''; // Return an empty string or handle undefined case
@@ -14,6 +14,11 @@ function TableData({ data = [], tableHeadNames = [], type = 'default' }) {
       ? description.slice(0, 40) + '...'
       : description;
   }
+
+  // Function to handle delete button click
+  const handleDelete = (index) => {
+    onDelete(index);
+  };
 
   return (
     <table className="border-t border-r border-l w-full text-xl">
@@ -99,7 +104,11 @@ function TableData({ data = [], tableHeadNames = [], type = 'default' }) {
                 <td className="flex gap-4">
                   <IoEyeOutline style={{ fontSize: '1.5rem' }} />
                   <GrEdit style={{ fontSize: '1.5rem' }} />
-                  <RiDeleteBin6Line style={{ fontSize: '1.5rem' }} />
+                  {/* Delete button with onClick handler */}
+                  <RiDeleteBin6Line
+                    style={{ fontSize: '1.5rem', cursor: 'pointer' }}
+                    onClick={() => handleDelete(index)}
+                  />
                 </td>
               </tr>
             ))}
@@ -112,6 +121,7 @@ TableData.propTypes = {
   data: PropTypes.array.isRequired,
   tableHeadNames: PropTypes.array.isRequired,
   type: PropTypes.string,
+  onDelete: PropTypes.func
 };
 
 export default TableData;
