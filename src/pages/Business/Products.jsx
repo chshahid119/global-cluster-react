@@ -142,7 +142,8 @@ function Products() {
   // Calculate total pages based on productsData length and items per page
   const totalPages = Math.ceil(productsData.length / itemsPerPage);
 
-  // Function to handle page change
+  // Function to handle page change￼
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -202,3 +203,10 @@ function Products() {
 }
 
 export default Products;
+
+
+  
+
+
+
+  

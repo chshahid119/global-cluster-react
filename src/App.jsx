@@ -12,17 +12,17 @@ import BusinessSettings from './pages/Business/Settings';
 import BusinessSignOut from './pages/Business/SingOut';
 
 import UserLayout from './Layouts/UserLayout';
-import UserDashboard from './pages/User/UserDashboard';
-import UserNetwork from './pages/User/UserNetwork';
-import UserRegister from './pages/User/UserRegister';
-import UserRegistrations from './pages/User/UserRegistrations';
-import UserRemoteAndEarn from './pages/User/UserRemoteAndEarn';
+import UserDashboard from './pages/User/Dashboard';
+import UserNetwork from './pages/User/Network';
+import UserRegister from './pages/User/Register';
+import UserRegistrations from './pages/User/Registrations';
+import UserRemoteAndEarn from './pages/User/RemoteAndEarn';
 import UserWallet from './pages/User/UserWallet';
-import UserPayOut from './pages/User/UserPayOut';
+import UserPayOut from './pages/User/Payout';
 import UserSupportTicket from './pages/User/UserSupportTicket';
-import UserSettings from './pages/User/UserSettings';
-import UserSignOut from './pages/User/UserSignOut';
-import UserProducts from './pages/User/UserProducts';
+import UserSettings from './pages/User/Settings';
+import UserSignOut from './pages/User/SignOut';
+import UserProducts from './pages/User/Products';
 
 const router = createBrowserRouter([
   {
