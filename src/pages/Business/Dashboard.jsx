@@ -66,7 +66,8 @@ const productsData = [
 
 function Dashboard() {
   return (
-    <div className="">
+    <div className="bg-gray-50">
+  
       <BusinessDashboardHeader />
       <div className="px-6 py-10 flex gap-6 flex-wrap">
         <InsightsCard
@@ -113,6 +114,7 @@ function Dashboard() {
           />
         </div>
       </div>
+
     </div>
   );
 }

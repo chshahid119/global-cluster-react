@@ -1,9 +1,9 @@
 import React from 'react'
 
-function UserProducts() {
+function Products() {
   return (
     <div>UserProducts</div>
   )
 }
 
-export default UserProducts
+export default Products

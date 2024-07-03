@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <BusinessProducts />, // Ensure BusinessProducts is imported correctly
+        element: <BusinessProducts />,
       },
       {
         path: 'support-ticket',
