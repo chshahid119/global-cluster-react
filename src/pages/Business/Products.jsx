@@ -117,7 +117,8 @@ function Products() {
 
   const { showModal, setShowModal } = useContext(ModalContext);
   const fetchedProductsData = useLoaderData();
-   const [productsData, setProductsData] = useState(fetchedProductsData);
+  const [productsData, setProductsData] = useState(fetchedProductsData.length ? fetchedProductsData : initialProductsData);
+
   
   const [currentPage, setCurrentPage] = useState(1);
 
