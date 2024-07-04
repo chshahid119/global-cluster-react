@@ -69,7 +69,7 @@ function Dashboard() {
     <div className="bg-gray-50">
   
       <BusinessDashboardHeader />
-      <div className="px-6 py-10 flex gap-6 flex-wrap">
+      <div className="px-6 py-10 flex gap-6 flex-wrap bg-white">
         <InsightsCard
           CardName="Total Share"
           TotalCount="40,689"

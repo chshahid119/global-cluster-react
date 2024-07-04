@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
+
 import BusinessSignUp from './components/BusinessSignUp';
 import Login from './pages/Login';
 import AdminLogin from './components/AdminLogin';
@@ -131,11 +132,13 @@ function App() {
   const [showModal, setShowModal] = useState(false);
 
   return (
+    
     <div className={`${showModal === true ? 'relative' : null}`}>
       <ModalContext.Provider value={{ showModal, setShowModal }}>
         <RouterProvider router={router} />
       </ModalContext.Provider>
     </div>
+   
   );
 }
 
