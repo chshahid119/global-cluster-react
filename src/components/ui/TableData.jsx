@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrEdit } from 'react-icons/gr';
 import { IoEyeOutline } from 'react-icons/io5';
 
 import ProductImg from './../../assets/images/productImg.png';
+import ConfirmDeletion from '../ConfirmDeletion';
+import Modal from "./../Modal"
+import ShowProductDetail from '../ShowProductDetail';
 
-function TableData({ data = [], tableHeadNames = [], type = 'default',onDelete }) {
-  // Safeguard in DecreaseDescription to handle undefined descriptions
+function TableData({ data = [], tableHeadNames = [], type = 'default', onDelete,handleShowProductDetails }) {
+  const [confirmDeletion, setConfirmDeletion] = useState(false);
+  const [showProductDetail,setShowProductDetail]=useState(false);
+    const [productDetail,setProductDetail]=useState({})
+  const [deleteIndex, setDeleteIndex] = useState(null); 
+  
+  
   function DecreaseDescription(description) {
     if (!description) return ''; // Return an empty string or handle undefined case
     return description.length > 50
@@ -16,9 +24,35 @@ function TableData({ data = [], tableHeadNames = [], type = 'default',onDelete }
   }
 
   // Function to handle delete button click
-  const handleDelete = (index) => {
-    onDelete(index);
-  };
+  function handleDelete(index) {
+    setDeleteIndex(index);
+    setConfirmDeletion(true);
+  }
+
+  // Function to handle deletion confirmation
+  function handleConfirmDelete() {
+    if (deleteIndex !== null) {
+      onDelete(deleteIndex);
+      setConfirmDeletion(false);
+      setDeleteIndex(null); // Reset the deleteIndex after deletion
+    }
+  }
+
+  // Function to handle cancellation of deletion
+  function handleCancelDelete() {
+    console.log("Delete is cancelled");
+    setConfirmDeletion(false);
+    setDeleteIndex(null);
+  }
+
+  async function handleShowProducts(item){
+    const data= await handleShowProductDetails(item.id);
+    // console.log("The product Detail is:",data)
+    setProductDetail(data)
+    setShowProductDetail(true);
+    
+
+  }
 
   return (
     <table className="border-t border-r border-l w-full text-xl">
@@ -102,9 +136,10 @@ function TableData({ data = [], tableHeadNames = [], type = 'default',onDelete }
                   </p>
                 </td>
                 <td className="flex gap-4">
-                  <IoEyeOutline style={{ fontSize: '1.5rem' }} />
-                  <GrEdit style={{ fontSize: '1.5rem' }} />
-                  {/* Delete button with onClick handler */}
+                
+                  <IoEyeOutline style={{ fontSize: '1.5rem', cursor: 'pointer' }} onClick={() =>handleShowProducts(item) }/>
+
+                  <GrEdit style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
                   <RiDeleteBin6Line
                     style={{ fontSize: '1.5rem', cursor: 'pointer' }}
                     onClick={() => handleDelete(index)}
@@ -113,6 +148,23 @@ function TableData({ data = [], tableHeadNames = [], type = 'default',onDelete }
               </tr>
             ))}
       </tbody>
+      {confirmDeletion && (
+        <Modal>
+          <ConfirmDeletion
+            notificationMsg='Are you sure? You want to Delete'
+            setConfirmDeletion={setConfirmDeletion}
+            handleConfirmDelete={handleConfirmDelete}
+            deleteIndex={deleteIndex}
+            handleCancelDelete={handleCancelDelete}
+          />
+        </Modal>
+      )}
+
+       {showProductDetail && (
+        <Modal>
+          <ShowProductDetail productDetail={productDetail} setShowProductDetail={setShowProductDetail}/>
+        </Modal>
+      )}
     </table>
   );
 }
@@ -121,7 +173,9 @@ TableData.propTypes = {
   data: PropTypes.array.isRequired,
   tableHeadNames: PropTypes.array.isRequired,
   type: PropTypes.string,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  handleShowProductDetails: PropTypes.func,
+  
 };
 
 export default TableData;

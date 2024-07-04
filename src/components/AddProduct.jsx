@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 import { ImCancelCircle } from "react-icons/im";
 import { IoCloudUploadOutline } from "react-icons/io5";
 
+
+    //  "id": 3,
+    // "name": "test",
+    // "photo": null,
+    // "status": "test",
+    // "description": "heloooo",
+    // "shares": 10,
+    // "traffic": 10,
+    // "phone_no": "bdhv",
+    // "link": "test"
+
 function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
   const [dragging, setDragging] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -67,7 +78,7 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
     const newProduct = {
       name: productName,
       description: description,
-      productImage: selectedFile,
+      photo: selectedFile,
       productLinkType: productLinkType
     };
 
