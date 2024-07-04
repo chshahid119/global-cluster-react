@@ -16,11 +16,11 @@ function Settings() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 bg-gray-50">
       <BusinessDashboardHeader />
       <BusinessCredentials />
 
-      <section className="px-10 py-20 mx-14 my-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] ">
+      <section className="px-10 py-20 mx-14 my-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] bg-white">
         <ActiveTab
           handleTabClick={handleTabClick}
           activeTab={activeTab}

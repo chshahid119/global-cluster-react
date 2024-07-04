@@ -3,7 +3,7 @@ import BusinessDashboardHeader from '../../components/ui/Header';
 
 function SignOut() {
   return (
-    <div>
+    <div className='bg-gray-50'>
       {' '}
       <BusinessDashboardHeader />
     </div>

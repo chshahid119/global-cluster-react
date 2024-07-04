@@ -1,233 +1,241 @@
-import React, { useState, useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import { ModalContext } from "./../../App"
+  import React, { useState, useContext } from 'react';
+  import { useLoaderData } from 'react-router-dom';
+  import { ModalContext } from "./../../App"
 
-import PageDataHeader from '../../components/ui/PageDataHeader';
-import BusinessDashboardHeader from '../../components/ui/Header';
-import Filter from '../../components/ui/Filter';
-import ProductsTicket from '../../components/ui/ProductTickets';
-import TableData from '../../components/ui/TableData';
-import Pagination from '../../components/Pagination';
-import Button from '../../components/Button';
-import AddProduct from '../../components/AddProduct';
-import Modal from '../../components/Modal';
-import { fetchProducts } from '../../services/api';
+  import PageDataHeader from '../../components/ui/PageDataHeader';
+  import BusinessDashboardHeader from '../../components/ui/Header';
+  import Filter from '../../components/ui/Filter';
+  import ProductsTicket from '../../components/ui/ProductTickets';
+  import TableData from '../../components/ui/TableData';
+  import Pagination from '../../components/Pagination';
+  import Button from '../../components/Button';
+  import AddProduct from '../../components/AddProduct';
+  import Modal from '../../components/Modal';
+  import ActionNotification from '../../components/ActionNotification';
 
-const initialProductsData = [
-  {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Pending',
-    traffic: '1200',
-    action: 'Edit',
-  },
-  {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-  {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Declined',
-    traffic: '1200',
-    action: 'Edit',
-  },
-  {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-  {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Declined',
-    traffic: '1200',
-    action: 'Edit',
-  },
-    {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-    {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'ActiveModal',
-    traffic: '1200',
-    action: 'Edit',
-  },
-    {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-    {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-    
-    {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-    {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-    {
-    name: 'lorem Ipsum',
-    description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
-  },
-];
+  import { fetchProducts, addProduct } from '../../services/api'; // Assuming you have an API service for fetching and adding products
 
-function Products() {
-
-  const { showModal, setShowModal } = useContext(ModalContext);
-  const fetchedProductsData = useLoaderData();
-   const [productsData, setProductsData] = useState(fetchedProductsData);
-  
-  const [currentPage, setCurrentPage] = useState(1);
-
- 
-
-  const itemsPerPage = 7; 
-
-  function addNewProduct(newProduct) {
-    
-    const updatedProduct={
-      ...newProduct,
+  const initialProductsData = [
+    {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Pending',
+      traffic: '1200',
+      action: 'Edit',
+    },
+    {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
       shares: 10,
       status: 'Active',
-      traffic: 3000,
-      action: 'Delete'
-    }
-    setProductsData([...productsData, updatedProduct]);
+      traffic: '1200',
+      action: 'Edit',
+    },
+    {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Declined',
+      traffic: '1200',
+      action: 'Edit',
+    },
+    {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Active',
+      traffic: '1200',
+      action: 'Edit',
+    },
+    {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Declined',
+      traffic: '1200',
+      action: 'Edit',
+    },
+      {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Active',
+      traffic: '1200',
+      action: 'Edit',
+    },
+      {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'ActiveModal',
+      traffic: '1200',
+      action: 'Edit',
+    },
+      {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Active',
+      traffic: '1200',
+      action: 'Edit',
+    },
+      {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Active',
+      traffic: '1200',
+      action: 'Edit',
+    },
+      
+      {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Active',
+      traffic: '1200',
+      action: 'Edit',
+    },
+      {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Active',
+      traffic: '1200',
+      action: 'Edit',
+    },
+      {
+      name: 'lorem Ipsum',
+      description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
+      shares: 10,
+      status: 'Active',
+      traffic: '1200',
+      action: 'Edit',
+    },
+  ];
+
+  function Products() {
+    const { showModal, setShowModal } = useContext(ModalContext);
+    const [showAction, setShowAction] = useState(false);
+    const fetchedProductsData = useLoaderData();
+    const [productsData, setProductsData] = useState(fetchedProductsData.length ? fetchedProductsData : initialProductsData);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 7;
+
+    // Products.js
+
+
+// Function to add new product
+async function addNewProduct(newProduct) {
+  try {
+    const addedProduct = await addProduct(newProduct); // Call addProduct API function
+    setProductsData([...productsData, addedProduct]); // Update productsData state with new product
     setShowModal(false); // Close modal after adding new product
+    showTemporaryNotification(); // Show notification
+  } catch (error) {
+    console.error('Error adding product:', error.message);
   }
+}
 
-   const onDelete = (index) => {
-    const updatedProducts = [...productsData];
-    updatedProducts.splice(index, 1); // Remove the item at index
-    setProductsData(updatedProducts);
-  };
+    // Function to handle deletion of a product
+    async function handleDelete(productId) {
+      const deleteApiUrl = `http://127.0.0.1:8000/api/products/${productId}`;
 
+      try {
+        const response = await fetch(deleteApiUrl, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-  // Calculate total pages based on productsData length and items per page
-  const totalPages = Math.ceil(productsData.length / itemsPerPage);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-  // Function to handle page change￼
+        // Fetch updated product list after deletion
+        const updatedProducts = await fetchProducts(); // Assuming this function fetches all products from backend
+        setProductsData(updatedProducts);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+        showTemporaryNotification(); // Show notification
+      } catch (error) {
+        console.error('Failed to delete product:', error.message);
+      }
+    }
 
-  // Calculate start and end index for slicing productsData array based on current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
+    // Function to show temporary notification
+    function showTemporaryNotification() {
+      setShowAction(true);
+      setTimeout(() => {
+        setShowAction(false);
+      }, 2000); // Hide after 2 seconds
+    }
 
-  // Slice productsData to show only items for the current page
-  const currentProducts = productsData.slice(startIndex, endIndex);
+    // Function to handle page change
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+    };
 
-  return (
-    <div className="flex flex-col gap-8">
-      <BusinessDashboardHeader />
-      <main className="m-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md">
-        <div className="py-20 px-20 flex flex-col gap-10">
-          <div className='flex justify-between items-center'>
-            <PageDataHeader
-              name="Products"
-              to="products"
-            />
-            <Button onClick={() => setShowModal(!showModal)} btnText='Add New Product' />
-          </div>
+    // Calculate start and end index for slicing productsData array based on current page
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
 
-          {showModal && (
-            <Modal> <AddProduct addNewProduct={addNewProduct} CloseModalWindow={setShowModal} currentStatus={showModal} /></Modal>
-          )}
+    // Slice productsData to show only items for the current page
+    const currentProducts = productsData.slice(startIndex, endIndex);
 
-          <ProductsTicket />
-         
-
-          <div className="flex flex-col gap-6 ">
-            <Filter />
-            <div className="flex flex-col gap-10">
-               <TableData
-        data={currentProducts}
-        tableHeadNames={[
-          'Product Name',
-          'Description',
-          'No of Shares',
-          'Traffic',
-          'Status',
-          'Action',
-        ]}
-        onDelete={onDelete} // Pass onDelete function
-      />
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
+    return (
+      <div className="flex flex-col gap-8 bg-gray-50">
+        <BusinessDashboardHeader />
+        <main className="m-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md bg-white">
+          <div className="py-20 px-20 flex flex-col gap-10">
+            <div className='flex justify-between items-center'>
+              <PageDataHeader
+                name="Products"
+                to="products"
               />
+              <Button onClick={() => setShowModal(!showModal)} btnText='Add New Product' />
+            </div>
+
+            {showModal && (
+              <Modal><AddProduct addNewProduct={addNewProduct} CloseModalWindow={setShowModal} currentStatus={showModal} /></Modal>
+            )}
+
+            {showAction && <Modal><ActionNotification message="Product Deleted Successfully" /></Modal>}
+
+            <ProductsTicket />
+
+            <div className="flex flex-col gap-6">
+              <Filter />
+              <div className="flex flex-col gap-10">
+                <TableData
+                  data={currentProducts}
+                  tableHeadNames={[
+                    'Product Name',
+                    'Description',
+                    'No of Shares',
+                    'Traffic',
+                    'Status',
+                    'Action',
+                  ]}
+                  onDelete={(index) => handleDelete(currentProducts[index].id)}
+                />
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={Math.ceil(productsData.length / itemsPerPage)}
+                  onPageChange={handlePageChange}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
-  );
-}
+        </main>
+      </div>
+    );
+  }
 
-export async function loader(){
-  const productsData= await fetchProducts();
+  export async function loader() {
+    const productsData = await fetchProducts(); // Assuming this function fetches all products from backend
+    return productsData;
+  }
 
-  return productsData
-}
-
-// export async function action({request}){
-//    const productData=request.formData()
-//    const data=Object.fromEntries(productData)
-//    console.log(data)
-
-//    return null;
-// }
-
-export default Products;
-
-
-  
-
-
-
-  
+  export default Products;

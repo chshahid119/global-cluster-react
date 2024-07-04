@@ -86,9 +86,9 @@ function SupportTicket() {
   );
 
   return (
-    <div>
+    <div className='bg-gray-50'>
       <BusinessDashboardHeader />
-      <main className="mx-10 my-10 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md">
+      <main className="mx-10 my-10 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md bg-white">
         <section className="px-10 py-10">
           <PageDataHeader
             name="Support Ticket"

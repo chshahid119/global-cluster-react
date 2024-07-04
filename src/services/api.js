@@ -1,7 +1,10 @@
+const BASE_URL = 'http://127.0.0.1:8000/api/products/';
+
+
 // api/api.js
 export async function fetchProducts() {
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/products/', {
+    const response = await fetch(BASE_URL, {
       method: 'GET', // Specify the request method
       headers: {
         'Content-Type': 'application/json',
@@ -25,3 +28,44 @@ export async function fetchProducts() {
     return [];
   }
 }
+
+
+
+
+// api/api.js
+export const addProduct = async (newProduct) => {
+  // Define default values for missing fields
+  const defaultProduct = {
+    name: 'Default Name',
+    photo: 'default.jpg',
+    status: 'Pending',
+    description: 'No description provided',
+    shares: 0,
+    traffic: 0,
+    phoneNumber: '',
+    link: '',
+    ...newProduct, // Merge newProduct with defaultProduct, newProduct fields will override defaults
+  };
+
+  try {
+    const response = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(defaultProduct),
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    return response.json(); // Assuming backend returns the created product data
+  } catch (error) {
+    throw new Error(`Error adding product: ${error.message}`);
+  }
+};
+
+
+
+
