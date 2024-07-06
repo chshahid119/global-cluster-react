@@ -32,20 +32,35 @@ export async function fetchProducts() {
 
 
 
+
+
 // api/api.js
 export const addProduct = async (newProduct) => {
+  console.log(newProduct)
+//   const newProduct2={
+//     "name": "shahid2",
+//     "photo": null,
+//     "status": "test",
+//     "description": "heloooo",
+//     "shares": 10,
+//     "traffic": 10,
+//     "phone_no": "bdhv",
+//     "link": "test"
+// }
   // Define default values for missing fields
   const defaultProduct = {
     name: 'Default Name',
-    photo: 'default.jpg',
-    status: 'Pending',
+    status: 'Active',
     description: 'No description provided',
     shares: 0,
     traffic: 0,
-    phoneNumber: '',
+    phone_no: '',
     link: '',
     ...newProduct, // Merge newProduct with defaultProduct, newProduct fields will override defaults
+     photo: null,
   };
+
+  console.log(defaultProduct)
 
   try {
     const response = await fetch(BASE_URL, {

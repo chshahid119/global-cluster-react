@@ -7,7 +7,7 @@ import USAFlag from './../../assets/images/usa.png';
 
 function Header() {
   return (
-    <div className="flex items-center justify-between shadow-sm px-10 py-10">
+    <div className="flex items-center justify-between shadow-sm px-10 py-10 bg-gray-50">
       <div className="w-[50rem]">
         <HeaderSearch />
       </div>
