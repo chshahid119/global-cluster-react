@@ -19,12 +19,6 @@ function UserSidebar() {
               <p>Dashboard</p>
             </li>
           </NavLink>
-          <NavLink to="network" className="py-4 px-8">
-            <li className="flex gap-6 items-center ">
-              <LuPieChart className="text-4xl" />
-              <p>Network</p>
-            </li>
-          </NavLink>
           <NavLink to="register" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <LuPieChart className="text-4xl" />
@@ -34,34 +28,46 @@ function UserSidebar() {
           <NavLink to="registrations" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <LuPieChart className="text-4xl" />
-              <p>Registrations</p>
+              <p>Registererations</p>
             </li>
           </NavLink>
-          <NavLink to="remote-and-earn" className="py-4 px-8">
+          <NavLink to="network" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <LuPieChart className="text-4xl" />
-              <p>Remote & Earn</p>
+              <p>Network</p>
             </li>
           </NavLink>
-          <NavLink to="products" className="py-4 px-8">
+          <NavLink to="promote-and-earn" className="py-4 px-8">
+            <li className="flex gap-6 items-center ">
+              <LuPieChart className="text-4xl" />
+              <p>Promote & Earn</p>
+            </li>
+          </NavLink>
+          <NavLink to="wallet" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <AiOutlineProduct className="text-4xl" />
-              <p>Products</p>
+              <p>Wallet</p>
             </li> 
           </NavLink>
-          <NavLink to="support-ticket" className="py-4 px-8">
+          <NavLink to="payout" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <BsTicketPerforated className="text-4xl" />
+              <p>Payout</p>
+            </li>
+          </NavLink>
+          <NavLink to="support-ticket" className="py-4 px-8">
+            <li className="flex gap-6 items-center justify-start ">
+              <IoSettingsOutline className="text-4xl" />
               <p>Support Ticket</p>
             </li>
           </NavLink>
           <NavLink to="settings" className="py-4 px-8">
-            <li className="flex gap-6 items-center justify-start ">
-              <IoSettingsOutline className="text-4xl" />
+            <li className="flex gap-6 items-center ">
+              <PiSignOutFill className="text-4xl" />
               <p>Settings</p>
             </li>
           </NavLink>
-          <NavLink to="sign-out" className="py-4 px-8">
+           <NavLink to="sign-out" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <PiSignOutFill className="text-4xl" />
               <p>Sign Out</p>
