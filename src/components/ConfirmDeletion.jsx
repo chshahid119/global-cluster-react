@@ -7,10 +7,10 @@ function ConfirmDeletion({ notificationMsg, handleConfirmDelete, deleteIndex, ha
       <div className='flex flex-col gap-6 items-center justify-center bg-white p-20 rounded-md border'>
         <h2 className='text-4xl font-semibold'>{notificationMsg}</h2>
         <div className='flex gap-4'>
-          <button className='bg-primary-light text-white font-semibold text-2xl py-3 px-5 cursor-pointer' onClick={handleCancelDelete}>
+          <button className='bg-primary-light text-white font-semibold text-2xl py-4 px-6 cursor-pointer rounded-lg' onClick={handleCancelDelete}>
             Cancel
           </button>
-          <button className='bg-red-400 text-white font-semibold text-2xl py-3 px-5 cursor-pointer' onClick={() => handleConfirmDelete(deleteIndex)}>
+          <button className='bg-red-400 text-white font-semibold text-2xl py-4 px-6 cursor-pointer rounded-lg' onClick={() => handleConfirmDelete(deleteIndex)}>
             Confirm Delete
           </button>
         </div>

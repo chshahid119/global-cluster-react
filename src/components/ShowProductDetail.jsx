@@ -6,7 +6,7 @@ import ProductDetailImage from "./../assets/images/detailsImg.jpeg"
 
 
 function ShowProductDetail({productDetail,setShowProductDetail}) {
-    console.log('thsi si in product detail components:' , productDetail)
+    // console.log('thsi si in product detail components:' , productDetail)
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 text-gray-500'>
       
