@@ -1,75 +1,100 @@
-import React from 'react';
-import Header from '../../components/ui/Header'
+import React, { useState } from 'react';
+import Payment from '../../components/Payment';
+import Header from '../../components/ui/Header';
+import ContactInformationStep2 from './../../components/ContactInformationStep2';
+import LoginInformationStep3 from './../../components/LoginInformationStep3';
+import OverviewStep4 from './../../components/OverviewStep4';
+import RegisterNowStep1 from './../../components/RegisterNowStep1';
+
 // import RegisterUser from '../../components/RegisterUser'
 
 function Register() {
+  const [regForm, setRegForm] = useState(1);
+
+  function PreviousFormPage() {
+    if (regForm === 1) return;
+    setRegForm(regForm - 1);
+  }
+
+  function NextFormPage() {
+    //  if (regForm === 4) return;
+    setRegForm(regForm + 1);
+  }
   return (
-     <div className=' bg-gray-50 '>
-      <Header/>
-      <div className='bg-white m-10 border rounded-xl'>
-        Main Box
-        <div className='bg-gray-50 border m-10 rounded-xl'>
-        <div className=' w-fit mx-auto my-10 flex gap-10 p-10  items-center'>
-         <div className='flex flex-col gap-2 items-center justify-center'>
-          <p className='bg-primary-light text-white px-6 py-2'>1</p>
-          <p className='font-semibold'>Register Now</p>
-         </div>
-         <div className="border-b border-dashed border-primary-light w-[8rem]"/>
-          <div className='flex flex-col gap-2 items-center justify-center'>
-          <p className='bg-primary-light text-white px-6 py-2'>2</p>
-          <p className='font-semibold'>Contact Information</p>
-         </div>
-         <div className="border-b border-dashed border-primary-light w-[8rem]"/>  
-          <div className='flex flex-col gap-2 items-center justify-center'>
-          <p className='bg-primary-light text-white px-6 py-2'>3</p>
-          <p className='font-semibold'>Login Information</p>
-         </div>
-         <div className="border-b border-dashed border-primary-light w-[8rem]"/>
-          <div className='flex flex-col gap-2 items-center justify-center'>
-          <p className='bg-primary-light text-white px-6 py-2'>4</p>
-          <p className='font-semibold'>Overview</p>
-         </div>
-        </div>
-        </div>
-
-
-        <form className='w-3/6 border mx-auto my-6'> 
-          <div className='flex gap-4'>
-           <div className='flex flex-col gap-4'> <label htmlFor="firstName">First Name</label>
-            <input type="text" id='firstName' name='firstName' /></div>
-            <div className='flex flex-col gap-4'>
-               <label htmlFor="lastName">Last Name</label>
-            <input type="text" id='LastName' name='LastName' />
+    <div className=" bg-gray-50 ">
+      <Header />
+      <div className="bg-white m-10  border rounded-xl">
+        <div className="bg-gray-50  m-10 rounded-xl ">
+          <div className=" w-fit mx-auto my-10 flex gap-10 p-10  items-center">
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <p className="bg-primary-light text-white px-6 py-2">1</p>
+              <p className="font-thin">Register Now</p>
+            </div>
+            <div className="border-b border-dashed border-primary-light w-[8rem]" />
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <p
+                className={`${
+                  regForm > 1 ? 'bg-primary-light' : 'bg-slate-400'
+                } text-white px-6 py-2`}
+              >
+                2
+              </p>
+              <p className="font-thin ">Contact Information</p>
+            </div>
+            <div className="border-b border-dashed border-primary-light w-[8rem]" />
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <p
+                className={`${
+                  regForm > 2 ? 'bg-primary-light' : 'bg-slate-400'
+                } text-white px-6 py-2`}
+              >
+                3
+              </p>
+              <p className="font-thin">Login Information</p>
+            </div>
+            <div className="border-b border-dashed border-primary-light w-[8rem]" />
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <p
+                className={`${
+                  regForm > 3 ? 'bg-primary-light' : 'bg-slate-400'
+                } text-white px-6 py-2`}
+              >
+                4
+              </p>
+              <p className="font-thin">Overview</p>
             </div>
           </div>
-          <div className='flex flex-col gap-4'>
-               <label htmlFor="gender">Gender</label>
-            <input type="text" id='gender' name='gender' />
+
+          <div className="w-4/6 mx-auto">
+            {regForm === 1 && <RegisterNowStep1 />}
+            {regForm === 2 && <ContactInformationStep2 />}
+            {regForm === 3 && <LoginInformationStep3 />}
+            {regForm === 4 && <OverviewStep4 />}
+            {regForm === 5 && (
+              <Payment setRegForm={setRegForm} regForm={regForm} />
+            )}
+
+            <div className="w-1/2 text-center items-center justify-center flex gap-8 text-white mx-auto py-20">
+              <p
+                className="px-20 flex-1 py-4 bg-gray-500 rounded-lg cursor-pointer select-none"
+                onClick={PreviousFormPage}
+              >
+                Back
+              </p>
+              <p
+                className="px-20 flex-1 py-4 bg-primary-light rounded-lg cursor-pointer select-none"
+                onClick={NextFormPage}
+              >
+                Next
+              </p>
             </div>
-            <div className='flex flex-col gap-4'>
-               <label htmlFor="email">Email Address</label>
-            <input type="email" id='email' name='email' />
-            </div>
-            <div className='flex flex-col gap-4'>
-               <label htmlFor="address">Address</label>
-            <input type="text" id='address' name='address' />
-            </div>
-            <div className='flex flex-col gap-4'>
-               <label htmlFor="country">Country</label>
-            <input type="text" id='country' name='country' />
-            </div>
-            <div className='flex flex-col gap-4'>
-               <label htmlFor="state">State</label>
-            <input type="text" id='state' name='state' />
-            </div>
-            <div className='flex flex-col gap-4'>
-               <label htmlFor="phone">Phone No</label>
-            <input type="tel" id='phone' name='phone' />
-            </div>
-        </form>
+          </div>
+          {/* Next Button  */}
+        </div>
+        {/* <*/}
       </div>
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;

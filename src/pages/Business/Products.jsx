@@ -1,19 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { ModalContext } from "./../../App";
+import { ModalContext } from './../../App';
 
-import PageDataHeader from '../../components/ui/PageDataHeader';
-import BusinessDashboardHeader from '../../components/ui/Header';
+import ActionNotification from '../../components/ActionNotification';
+import AddProduct from '../../components/AddProduct';
+import Button from '../../components/Button';
+import Modal from '../../components/Modal';
+import Pagination from '../../components/Pagination';
 import Filter from '../../components/ui/Filter';
+import BusinessDashboardHeader from '../../components/ui/Header';
+import PageDataHeader from '../../components/ui/PageDataHeader';
 import ProductsTicket from '../../components/ui/ProductTickets';
 import TableData from '../../components/ui/TableData';
-import Pagination from '../../components/Pagination';
-import Button from '../../components/Button';
-import AddProduct from '../../components/AddProduct';
-import Modal from '../../components/Modal';
-import ActionNotification from '../../components/ActionNotification';
 
-import { fetchProducts, addProduct } from '../../services/api'; 
+import { addProduct, fetchProducts } from '../../services/api';
 
 const initialProductsData = [
   // Your initial products data
@@ -23,25 +23,24 @@ function Products() {
   const { showModal, setShowModal } = useContext(ModalContext);
   const [showAction, setShowAction] = useState(false);
 
-
   const fetchedProductsData = useLoaderData();
-  const [productsData, setProductsData] = useState(fetchedProductsData.length ? fetchedProductsData : initialProductsData);
+  const [productsData, setProductsData] = useState(
+    fetchedProductsData.length ? fetchedProductsData : initialProductsData,
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
 
-  
   async function addNewProduct(newProduct) {
     try {
-      const addedProduct = await addProduct(newProduct); 
-      setProductsData([...productsData, addedProduct]); 
-      setShowModal(false); 
-      showTemporaryNotification(); 
+      const addedProduct = await addProduct(newProduct);
+      setProductsData([...productsData, addedProduct]);
+      setShowModal(false);
+      showTemporaryNotification();
     } catch (error) {
       console.error('Error adding product:', error.message);
     }
   }
 
- 
   async function handleDelete(productId) {
     const deleteApiUrl = `http://127.0.0.1:8000/api/products/${productId}`;
 
@@ -57,59 +56,48 @@ function Products() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-
-      
-      const updatedProducts = await fetchProducts(); 
+      const updatedProducts = await fetchProducts();
       setProductsData(updatedProducts);
-
-     
     } catch (error) {
       console.error('Failed to delete product:', error.message);
     }
   }
 
-  async function handleShowProductDetails(productId){
+  async function handleShowProductDetails(productId) {
     // console.log(productId)
 
-    const apiUrl=`http://127.0.0.1:8000/api/products/${productId}/`
-    console.log(apiUrl)
+    const apiUrl = `http://127.0.0.1:8000/api/products/${productId}/`;
+    console.log(apiUrl);
 
-     try {
+    try {
       const response = await fetch(apiUrl);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-     const productData=await response.json();
-    
-     return productData
-     
+      const productData = await response.json();
 
-     
+      return productData;
     } catch (error) {
       console.error('Failed to fetch that product:', error.message);
     }
   }
 
-  
   function showTemporaryNotification() {
     setShowAction(true);
     setTimeout(() => {
       setShowAction(false);
-    }, 2000); 
+    }, 2000);
   }
 
-  
-  const handlePageChange = (page) => {
+  const handlePageChange = page => {
     setCurrentPage(page);
   };
 
-  
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  
   const currentProducts = productsData.slice(startIndex, endIndex);
 
   return (
@@ -117,19 +105,29 @@ function Products() {
       <BusinessDashboardHeader />
       <main className="m-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md bg-white">
         <div className="py-20 px-20 flex flex-col gap-10">
-          <div className='flex justify-between items-center'>
-            <PageDataHeader
-              name="Products"
-              to="products"
+          <div className="flex justify-between items-center">
+            <PageDataHeader name="Products" to="products" />
+            <Button
+              onClick={() => setShowModal(!showModal)}
+              btnText="Add New Product"
             />
-            <Button onClick={() => setShowModal(!showModal)} btnText='Add New Product' />
           </div>
 
           {showModal && (
-            <Modal><AddProduct addNewProduct={addNewProduct} CloseModalWindow={setShowModal} currentStatus={showModal} /></Modal>
+            <Modal>
+              <AddProduct
+                addNewProduct={addNewProduct}
+                CloseModalWindow={setShowModal}
+                currentStatus={showModal}
+              />
+            </Modal>
           )}
 
-          {showAction && <Modal><ActionNotification message="Product Added Successfully" /></Modal>}
+          {showAction && (
+            <Modal>
+              <ActionNotification message="Product Added Successfully" />
+            </Modal>
+          )}
 
           <ProductsTicket />
 
@@ -146,9 +144,10 @@ function Products() {
                   'Status',
                   'Action',
                 ]}
-                onDelete={(index) => handleDelete(productsData[startIndex + index].id)} 
+                onDelete={index =>
+                  handleDelete(productsData[startIndex + index].id)
+                }
                 handleShowProductDetails={handleShowProductDetails}
-             
               />
               <Pagination
                 currentPage={currentPage}

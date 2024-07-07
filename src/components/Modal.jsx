@@ -1,16 +1,16 @@
-import React from 'react'
-import {PropTypes} from "prop-types"
+import { PropTypes } from 'prop-types';
+import React from 'react';
 
-function Modal({children}) {
+function Modal({ children }) {
   return (
-    <div className=' h-screen fixed w-screen top-0 left-0 border-2 bg-gray-400 bg-opacity-70 overflow-hidden ' >
-             {children}
-            </div>
-  )
+    <div className=" h-screen fixed w-screen top-0 left-0 border-2 bg-gray-400 bg-opacity-70 overflow-hidden ">
+      {children}
+    </div>
+  );
 }
 
-Modal.propTypes={
-    children: PropTypes.node
-}
+Modal.propTypes = {
+  children: PropTypes.node,
+};
 
-export default Modal
+export default Modal;
