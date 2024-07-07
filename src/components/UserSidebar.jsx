@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import SidebarLogo from './SidebarLogo';
-import { IoSettingsOutline } from 'react-icons/io5';
 import { AiOutlineProduct } from 'react-icons/ai';
+import { BsTicketPerforated } from 'react-icons/bs';
+import { IoSettingsOutline } from 'react-icons/io5';
 import { LuPieChart } from 'react-icons/lu';
 import { PiSignOutFill } from 'react-icons/pi';
-import { BsTicketPerforated } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
+import SidebarLogo from './SidebarLogo';
 
 function UserSidebar() {
   return (
@@ -13,7 +13,7 @@ function UserSidebar() {
       <SidebarLogo />
       <nav>
         <ul className="flex flex-col gap-6 p-20 text-white">
-         <NavLink to="dashboard" className="py-4 px-8 ">
+          <NavLink to="dashboard" className="py-4 px-8 ">
             <li className="flex gap-6 items-center ">
               <LuPieChart className="text-4xl" />
               <p>Dashboard</p>
@@ -47,7 +47,7 @@ function UserSidebar() {
             <li className="flex gap-6 items-center ">
               <AiOutlineProduct className="text-4xl" />
               <p>Wallet</p>
-            </li> 
+            </li>
           </NavLink>
           <NavLink to="payout" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
@@ -67,7 +67,7 @@ function UserSidebar() {
               <p>Settings</p>
             </li>
           </NavLink>
-           <NavLink to="sign-out" className="py-4 px-8">
+          <NavLink to="sign-out" className="py-4 px-8">
             <li className="flex gap-6 items-center ">
               <PiSignOutFill className="text-4xl" />
               <p>Sign Out</p>

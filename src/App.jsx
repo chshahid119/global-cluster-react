@@ -1,29 +1,34 @@
 import React, { createContext, useState } from 'react';
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 
-
-import BusinessSignUp from './components/BusinessSignUp';
-import Login from './pages/Login';
 import AdminLogin from './components/AdminLogin';
+import BusinessSignUp from './components/BusinessSignUp';
 import BusinessLayout from './Layouts/BusinessLayout';
 import BusinessDashboard from './pages/Business/Dashboard';
-import BusinessProducts,{loader as productLoader } from './pages/Business/Products'; 
-import BusinessSupportTicket from './pages/Business/SupportTicket';
+import BusinessProducts, {
+  loader as productLoader,
+} from './pages/Business/Products';
 import BusinessSettings from './pages/Business/Settings';
 import BusinessSignOut from './pages/Business/SingOut';
+import BusinessSupportTicket from './pages/Business/SupportTicket';
+import Login from './pages/Login';
 
 import UserLayout from './Layouts/UserLayout';
 import UserDashboard from './pages/User/Dashboard';
 import UserNetwork from './pages/User/Network';
+import UserPayOut from './pages/User/Payout';
+import UserPermoteAndEArn from './pages/User/PermoteAndEarn';
+import UserProducts from './pages/User/Products';
 import UserRegister from './pages/User/Register';
 import UserRegistrations from './pages/User/Registrations';
-import UserRemoteAndEarn from './pages/User/RemoteAndEarn';
-import UserWallet from './pages/User/UserWallet';
-import UserPayOut from './pages/User/Payout';
-import UserSupportTicket from './pages/User/UserSupportTicket';
 import UserSettings from './pages/User/Settings';
 import UserSignOut from './pages/User/SignOut';
-import UserProducts from './pages/User/Products';
+import UserSupportTicket from './pages/User/UserSupportTicket';
+import UserWallet from './pages/User/UserWallet';
 
 const router = createBrowserRouter([
   {
@@ -54,7 +59,6 @@ const router = createBrowserRouter([
         path: 'products',
         element: <BusinessProducts />,
         loader: productLoader,
-     
       },
       {
         path: 'support-ticket',
@@ -91,8 +95,8 @@ const router = createBrowserRouter([
         element: <UserRegistrations />,
       },
       {
-        path: 'remote-and-earn',
-        element: <UserRemoteAndEarn />,
+        path: 'promote-and-earn',
+        element: <UserPermoteAndEArn />,
       },
       {
         path: 'products',
@@ -132,13 +136,11 @@ function App() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    
     <div className={`${showModal === true ? 'relative' : null}`}>
       <ModalContext.Provider value={{ showModal, setShowModal }}>
         <RouterProvider router={router} />
       </ModalContext.Provider>
     </div>
-   
   );
 }
 
