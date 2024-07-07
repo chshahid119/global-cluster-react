@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import TakeInput from './TakeInput';
 
-function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
+function AddTicket() {
   const [dragging, setDragging] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [productName, setProductName] = useState('');
@@ -13,19 +13,19 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
 
   const modalRef = useRef(null);
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        CloseModalWindow(!currentStatus);
-      }
-    }
+  // useEffect(() => {
+  //   function handleClickOutside(event) {
+  //     if (modalRef.current && !modalRef.current.contains(event.target)) {
+  //       CloseModalWindow(!currentStatus);
+  //     }
+  //   }
 
-    document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [CloseModalWindow, currentStatus]);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, [CloseModalWindow, currentStatus]);
 
   const handleDragEnter = e => {
     e.preventDefault();
@@ -68,9 +68,9 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
       productLinkType: productLinkType,
     };
 
-    addNewProduct(newProduct);
+    // addNewProduct(newProduct);
 
-    CloseModalWindow(!currentStatus);
+    // CloseModalWindow(!currentStatus);
   };
 
   return (
@@ -89,7 +89,7 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
           <p className="font-thin">Add New Product</p>
           <div
             className="cursor-pointer"
-            onClick={() => CloseModalWindow(!currentStatus)}
+            // onClick={() => CloseModalWindow(!currentStatus)}
           >
             <ImCancelCircle style={{ fontSize: '2rem' }} />
           </div>
@@ -215,7 +215,7 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
 
           <div className="flex items-center justify-center gap-4">
             <p
-              onClick={() => CloseModalWindow(!currentStatus)}
+              // onClick={() => CloseModalWindow(!currentStatus)}
               className="flex-1 flex items-center justify-center px-4 py-6 border rounded-xl border-primary-light hover:bg-primary-light hover:text-white cursor-pointer"
             >
               Cancel
@@ -233,10 +233,10 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
   );
 }
 
-AddProduct.propTypes = {
+AddTicket.propTypes = {
   addNewProduct: PropTypes.func,
   CloseModalWindow: PropTypes.func,
   currentStatus: PropTypes.bool,
 };
 
-export default AddProduct;
+export default AddTicket;

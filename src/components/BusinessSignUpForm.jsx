@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import { HiMiniUserPlus } from 'react-icons/hi2';
+import { NavLink } from 'react-router-dom';
 
 function BusinessSignUpForm({ companySizeInput, SetCompanySizeInput }) {
   function handleSubmit() {
@@ -117,7 +117,7 @@ function BusinessSignUpForm({ companySizeInput, SetCompanySizeInput }) {
           </div>
 
           <div
-            className="w-full bg-primary-light text-white font-semibold py-6 rounded-full hover:bg-primary-dark 
+            className="w-full bg-primary-light text-white font-semibold py-6 rounded-full hover:bg-primary-dark
         transition duration-300 flex gap-4 items-center justify-center cursor-pointer"
             onClick={() => SetCompanySizeInput(false)}
           >

@@ -1,7 +1,7 @@
 import React from 'react';
+import LoginForm from '../components/LoginForm';
 import LoginHeader from '../components/LoginHeader';
 import LoginPageImg from './../assets/images/loginPageSideImg.jpeg';
-import LoginForm from '../components/LoginForm';
 
 function Login() {
   return (
@@ -21,7 +21,7 @@ function Login() {
         </div>
 
         <div className="hidden lg:block w-8/12 relative">
-          <div className="absolute inset-0 bg-gradient-to-b  from-sky-800 to-sky-700 opacity-70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b  from-gray-500 to-gray-600 opacity-70"></div>
           <img
             className="w-full h-full object-center object-cover"
             src={LoginPageImg}

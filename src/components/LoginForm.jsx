@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { HiMiniUserPlus } from 'react-icons/hi2';
+import { NavLink } from 'react-router-dom';
 
 function LoginForm() {
   const [LoginType, setLoginType] = useState('Business');
@@ -22,7 +22,7 @@ function LoginForm() {
           Individual
         </p>
         <p
-          className={` text-center w-full px-4 py-4 rounded-md 
+          className={` text-center w-full px-4 py-4 rounded-md
         cursor-pointer ${
           LoginType === 'Business'
             ? 'bg-[#ffffff] text-primary-light border'
@@ -64,7 +64,7 @@ function LoginForm() {
           </span>
         </p>
         <div
-          className="w-full bg-primary-light text-white font-semibold py-4 rounded-full hover:bg-primary-dark 
+          className="w-full bg-primary-light text-white font-semibold py-4 rounded-full hover:bg-primary-dark
         transition duration-300 flex gap-4 items-center justify-center cursor-pointer"
         >
           <NavLink to="/business-dashboard">
@@ -73,7 +73,7 @@ function LoginForm() {
               className="flex items-center justify-center gap-4"
             >
               <HiMiniUserPlus className="text-4xl " />
-              <p>Login</p>
+              <p className="select-none text-4xl font-thin">Login</p>
             </button>
           </NavLink>
         </div>
