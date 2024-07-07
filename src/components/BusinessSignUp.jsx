@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import LoginHeader from './LoginHeader';
 import LoginPageImg from './../assets/images/loginPageSideImg.jpeg';
 import BusinessSignUpForm from './BusinessSignUpForm';
 import ComapnySizeInput from './ComapnySizeInput';
+import LoginHeader from './LoginHeader';
 
 function BusinessSignUp() {
   const [companySizeInputShow, SetCompanySizeInputShow] = useState(true);
@@ -40,7 +40,7 @@ function BusinessSignUp() {
 
         {/* Right side - Image with Gradient Overlay */}
         <div className="hidden lg:block w-8/12 relative">
-          <div className="absolute inset-0 bg-gradient-to-b  from-sky-800 to-sky-700 opacity-70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b  from-gray-500 to-gray-600 opacity-70"></div>
           <img
             className="w-full h-full object-center object-cover"
             src={LoginPageImg}

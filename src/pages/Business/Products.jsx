@@ -131,7 +131,7 @@ function Products() {
 
           <ProductsTicket />
 
-          <div className="flex flex-col gap-6">
+          <section className="flex flex-col gap-6">
             <Filter />
             <div className="flex flex-col gap-10">
               <TableData
@@ -155,7 +155,7 @@ function Products() {
                 onPageChange={handlePageChange}
               />
             </div>
-          </div>
+          </section>
         </div>
       </main>
     </div>

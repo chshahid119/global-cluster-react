@@ -140,7 +140,7 @@ function Wallet() {
           </section>
         </div>
 
-        <section className="p-10  space-y-20">
+        <section className="p-10  space-y-8">
           <div className="p-8 flex flex-col gap-10">
             <Filter />
           </div>
