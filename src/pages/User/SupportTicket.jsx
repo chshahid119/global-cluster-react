@@ -101,7 +101,7 @@ function SupportTicket() {
           <TicketCard name="Total Complaints" numbers={250} />
           <TicketCard name="Total Complaints" numbers={250} />
         </section>
-        <section className="p-10 ">
+        <section className="p-10 space-y-16">
           <div className="p-8 flex flex-col gap-10">
             <Filter />
             <TableData

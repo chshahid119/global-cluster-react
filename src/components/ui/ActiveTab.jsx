@@ -1,7 +1,9 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
+// src/components/ui/ActiveTab.js
 
-function ActiveTab({ handleTabClick, activeTab, setActiveTab }) {
+import PropTypes from 'prop-types';
+import React from 'react';
+
+function ActiveTab({ handleTabClick, activeTab, businessTab = 'false' }) {
   return (
     <div className="py-2 px-10 flex gap-6 border-b">
       {/* Personal Details Tab */}
@@ -31,6 +33,30 @@ function ActiveTab({ handleTabClick, activeTab, setActiveTab }) {
       >
         Security
       </p>
+      {/* Bank Details Tab */}
+      {businessTab !== 'true' && (
+        <>
+          <p
+            onClick={() => handleTabClick('Bank Details')}
+            className={`p-3 rounded-sm cursor-pointer ${
+              activeTab === 'Bank Details' ? 'bg-primary-light text-white' : ''
+            }`}
+          >
+            Bank Details
+          </p>
+          {/* Payment Settings Tab */}
+          <p
+            onClick={() => handleTabClick('Payment Settings')}
+            className={`p-3 rounded-sm cursor-pointer ${
+              activeTab === 'Payment Settings'
+                ? 'bg-primary-light text-white'
+                : ''
+            }`}
+          >
+            Payment Settings
+          </p>
+        </>
+      )}
     </div>
   );
 }
@@ -38,7 +64,7 @@ function ActiveTab({ handleTabClick, activeTab, setActiveTab }) {
 ActiveTab.propTypes = {
   handleTabClick: PropTypes.func.isRequired,
   activeTab: PropTypes.string.isRequired,
-  setActiveTab: PropTypes.func.isRequired,
+  businessTab: PropTypes.string,
 };
 
 export default ActiveTab;

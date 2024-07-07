@@ -27,8 +27,8 @@ import UserRegister from './pages/User/Register';
 import UserRegistrations from './pages/User/Registrations';
 import UserSettings from './pages/User/Settings';
 import UserSignOut from './pages/User/SignOut';
-import UserSupportTicket from './pages/User/UserSupportTicket';
-import UserWallet from './pages/User/UserWallet';
+import UserSupportTicket from './pages/User/SupportTicket';
+import UserWallet from './pages/User/Wallet';
 
 const router = createBrowserRouter([
   {
