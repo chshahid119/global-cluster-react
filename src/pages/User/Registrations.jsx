@@ -1,78 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
+import UserDataTable from '../../components/UserDataTable';
 import Header from './../../components/ui/Header';
-import TableData from './../../components/ui/TableData';
 
-const productsData = [
+const userData = [
   {
-    name: 'lorem Ipsum',
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit.orem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident? Atque, provident?',
-    shares: 10,
+    user: 'Samuel',
+    type: 'Individual',
+    lastUpdated: 'January 20, 2024',
+    Email: 'Silasdahun@gmail.com',
+    date: 'January 24,2024',
     status: 'Pending',
-    traffic: '1200',
-    action: 'Edit',
+    phone: '0807331612',
+    address: 'Mobhi Road, Ajah Logos',
+    state: 'Virginia',
   },
   {
-    name: 'lorem Ipsum',
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit.orem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident? Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
+    user: 'Samuel',
+    type: 'Individual',
+    lastUpdated: 'January 20, 2024',
+    Email: 'Silasdahun@gmail.com',
+    date: 'January 24,2024',
+    status: 'Approve',
+    phone: '0807331612',
+    address: 'Mobhi Road, Ajah Logos',
+    state: 'Los Angles',
   },
   {
-    name: 'lorem Ipsum',
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident?',
-    shares: 10,
-    status: 'Declined',
-    traffic: '1200',
-    action: 'Edit',
+    user: 'Samuel',
+    type: 'Individual',
+    lastUpdated: 'January 20, 2024',
+    Email: 'Silasdahun@gmail.com',
+    date: 'January 24,2024',
+    status: 'Approve',
+    phone: '0807331612',
+    address: 'Mobhi Road, Ajah Logos',
+    state: 'Virginia',
   },
   {
-    name: 'lorem Ipsum',
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. orem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident? Atque, provident?',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
+    user: 'Samuel',
+    type: 'Individual',
+    lastUpdated: 'January 20, 2024',
+    Email: 'Silasdahun@gmail.com',
+    date: 'January 24,2024',
+    status: 'Approve',
+    phone: '0807331612',
+    address: 'Mobhi Road, Ajah Logos',
+    state: 'Virginia',
   },
   {
-    name: 'lorem Ipsum',
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. orem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident? Atque, provident?',
-    shares: 10,
-    status: 'Declined',
-    traffic: '1200',
-    action: 'Edit',
+    user: 'Samuel',
+    type: 'Individual',
+    lastUpdated: 'January 20, 2024',
+    Email: 'Silasdahun@gmail.com',
+    date: 'January 24,2024',
+    status: 'Decline',
+    phone: '0807331612',
+    address: 'Mobhi Road, Ajah Logos',
+    state: 'Virginia',
   },
   {
-    name: 'lorem Ipsum',
-    description:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident? orem ipsum dolor sit, amet consectetur adipisicing elit. Atque, provident',
-    shares: 10,
-    status: 'Active',
-    traffic: '1200',
-    action: 'Edit',
+    user: 'Samuel',
+    type: 'Individual',
+    lastUpdated: 'January 20, 2024',
+    Email: 'Silasdahun@gmail.com',
+    date: 'January 24,2024',
+    status: 'Decline',
+    phone: '0807331612',
+    address: 'Mobhi Road, Ajah Logos',
+    state: 'Virginia',
   },
 ];
 
 function Registrations() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // Number of items per page
+
+  // Calculate total pages based on data length and items per page
+  const totalPages = Math.ceil(userData.length / itemsPerPage);
+
+  // Function to handle page change
+  const handlePageChange = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Calculate start and end index for current page
+  const startIndex = (currentPage - 1) * itemsPerPage + 1;
+  const endIndex = Math.min(currentPage * itemsPerPage, userData.length);
+  const paginatedData = userData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
   return (
     <div className="bg-gray-50">
       <Header />
       <main className="bg-white m-20 p-10 rounded-lg">
         <h2 className="text-4xl font-semibold">Registrations</h2>
         <div className="p-20">
-          <TableData
-            data={productsData}
+          <UserDataTable
+            type="default"
+            data={paginatedData}
             tableHeadNames={[
-              'Product Name',
-              'Description',
-              'No of Shares',
-              'Traffic',
+              'User',
+              'Type',
+              'Email',
+              'Date',
               'Status',
               'Action',
             ]}

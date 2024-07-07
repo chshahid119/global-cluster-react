@@ -1,6 +1,5 @@
 const BASE_URL = 'http://127.0.0.1:8000/api/products/';
 
-
 // api/api.js
 export async function fetchProducts() {
   try {
@@ -21,7 +20,6 @@ export async function fetchProducts() {
     const productsData = await response.json();
     console.log(productsData);
     return productsData;
-
   } catch (error) {
     console.error('Error fetching products:', error.message);
     // Return an empty array or a default value in case of error
@@ -29,24 +27,19 @@ export async function fetchProducts() {
   }
 }
 
-
-
-
-
-
 // api/api.js
-export const addProduct = async (newProduct) => {
-  console.log(newProduct)
-//   const newProduct2={
-//     "name": "shahid2",
-//     "photo": null,
-//     "status": "test",
-//     "description": "heloooo",
-//     "shares": 10,
-//     "traffic": 10,
-//     "phone_no": "bdhv",
-//     "link": "test"
-// }
+export const addProduct = async newProduct => {
+  console.log(newProduct);
+  //   const newProduct2={
+  //     "name": "shahid2",
+  //     "photo": null,
+  //     "status": "test",
+  //     "description": "heloooo",
+  //     "shares": 10,
+  //     "traffic": 10,
+  //     "phone_no": "bdhv",
+  //     "link": "test"
+  // }
   // Define default values for missing fields
   const defaultProduct = {
     name: 'Default Name',
@@ -57,10 +50,10 @@ export const addProduct = async (newProduct) => {
     phone_no: '',
     link: '',
     ...newProduct, // Merge newProduct with defaultProduct, newProduct fields will override defaults
-     photo: null,
+    photo: null,
   };
 
-  console.log(defaultProduct)
+  console.log(defaultProduct);
 
   try {
     const response = await fetch(BASE_URL, {
@@ -70,17 +63,25 @@ export const addProduct = async (newProduct) => {
       },
       body: JSON.stringify(defaultProduct),
     });
-    
+
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    
+
     return response.json(); // Assuming backend returns the created product data
   } catch (error) {
     throw new Error(`Error adding product: ${error.message}`);
   }
 };
 
-
-
-
+// export const getProfile = async profileId => {
+//   try {
+//     const userProfile = await fetch(
+//       `http://127.0.0.1:8000/api/profile/${profileId}/`,
+//     );
+//     const user = await userProfile.json();
+//     return user;
+//   } catch (err) {
+//     console.error(`The profile does not fetched due to: ${err.message}`);
+//   }
+// };

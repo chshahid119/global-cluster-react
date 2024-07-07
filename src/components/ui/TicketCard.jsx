@@ -1,8 +1,8 @@
-import React from 'react';
 import { PropTypes } from 'prop-types';
+import React from 'react';
 import productTicketImg from './../../assets/images/productTicketImg.png';
 
-function SupportTicketCard({ name, numbers }) {
+function TicketCard({ name, numbers }) {
   return (
     <div className="p-8">
       <div className="flex gap-4 items-center">
@@ -22,9 +22,9 @@ function SupportTicketCard({ name, numbers }) {
   );
 }
 
-SupportTicketCard.propTypes = {
+TicketCard.propTypes = {
   name: PropTypes.string,
   numbers: PropTypes.number,
 };
 
-export default SupportTicketCard;
+export default TicketCard;

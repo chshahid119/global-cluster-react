@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
-import { MdSupervisorAccount } from 'react-icons/md';
+import React from 'react';
 import { AiOutlineRise } from 'react-icons/ai';
+import { MdSupervisorAccount } from 'react-icons/md';
 
 function InsightsCard({ CardName, TotalCount, TotalIncDec }) {
   return (
