@@ -10,6 +10,7 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
   const [productName, setProductName] = useState('');
   const [description, setDescription] = useState('');
   const [productLinkType, setProductLinkType] = useState('');
+  const [linkValue, setLinkValue] = useState('');
 
   const modalRef = useRef(null);
 
@@ -47,17 +48,15 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
     setDragging(false);
     const file = e.dataTransfer.files[0];
     setSelectedFile(file);
-    // Handle the dropped file here (e.g., upload or display preview)
   };
 
   const handleFileInputChange = e => {
     const file = e.target.files[0];
     setSelectedFile(file);
-    // Handle file selection here
   };
 
   const handleProductLinkTypeChange = e => {
-    setProductLinkType(e.target.id); // Assuming radio button ids match link types
+    setProductLinkType(e.target.id);
   };
 
   const AddAndCloseModal = () => {
@@ -66,10 +65,10 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
       description: description,
       photo: selectedFile,
       productLinkType: productLinkType,
+      linkValue: linkValue,
     };
 
     addNewProduct(newProduct);
-
     CloseModalWindow(!currentStatus);
   };
 
@@ -128,8 +127,8 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
               Product Image
             </label>
             <div
-              className={`flex flex-col border rounded-md h-[10rem] w-full items-center justify-center ${
-                dragging ? 'bg-blue-100' : ''
+              className={`flex flex-col border-dashed border-2  rounded-lg h-[10rem] w-full items-center justify-center ${
+                dragging ? 'bg-blue-100 border-blue-500' : 'border-gray-300'
               }`}
               onDragEnter={handleDragEnter}
               onDragOver={handleDragOver}
@@ -211,7 +210,7 @@ function AddProduct({ addNewProduct, CloseModalWindow, currentStatus }) {
             </div>
           </div>
 
-          <TakeInput type={productLinkType} />
+          <TakeInput type={productLinkType} setLinkValue={setLinkValue} />
 
           <div className="flex items-center justify-center gap-4">
             <p

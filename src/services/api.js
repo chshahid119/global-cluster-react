@@ -93,17 +93,17 @@ export async function fetchSupportTickets() {
 }
 
 export async function addTicket(newTicket) {
-  console.log(newTicket);
-  const defaultProduct = {
-    created_at: '2024-07-08T17:21:05.311571Z',
-    updated_at: '2024-07-08T17:21:05.311571Z',
-    subject: 'reference id jsadlkalsf',
-    status: 'Open',
-    priority: 'low',
-    user: 2,
-  };
+  // console.log(newTicket);
+  // const defaultProduct = {
+  //   created_at: '2024-07-08T17:21:05.311571Z',
+  //   updated_at: '2024-07-08T17:21:05.311571Z',
+  //   subject: 'shahid is my name',
+  //   status: 'Open',
+  //   priority: 'low',
+  //   user: 2,
+  // };
 
-  // console.log(defaultProduct);
+  console.log(newTicket);
 
   try {
     const response = await fetch(`${BASE_URL}/support-tickets/`, {
@@ -111,7 +111,7 @@ export async function addTicket(newTicket) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(defaultProduct),
+      body: JSON.stringify(newTicket),
     });
 
     if (!response.ok) {

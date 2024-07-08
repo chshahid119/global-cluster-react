@@ -156,21 +156,22 @@ function TableData({
               <tr key={index} className="border-t my-2">
                 <td className="p-6 flex gap-3 items-center">
                   <input type="checkbox" id="products" name="products" />
-                  <p>{item.id.split('-')}</p>
+                  <p>{item.id}</p>
                 </td>
                 <td className="p-6">{convertStandardDate(item.created_at)}</td>
                 <td className="p-6">{convertStandardDate(item.updated_at)}</td>
                 <td className="p-6">{item.subject}</td>
-                <td className="p-6">{DecreaseDescription(item.status)}</td>
+                <td className="p-6">{item.status}</td>
 
                 <td className="p-6">
                   <p
                     className={`px-4 py-1 rounded-xl w-fit text-center ${
-                      item.priority === 'High'
+                      item.priority === 'High' || item.priority === 'high'
                         ? 'bg-red-100 text-red-500'
-                        : item.priority === 'Medium'
+                        : item.priority === 'Medium' ||
+                          item.priority === 'medium'
                         ? 'bg-blue-100 text-blue-500'
-                        : item.priority === 'Low'
+                        : item.priority === 'low' || item.priority === 'Low'
                         ? 'bg-green-100 text-green-800'
                         : ''
                     }`}
@@ -255,7 +256,10 @@ function TableData({
                     style={{ fontSize: '1.5rem', cursor: 'pointer' }}
                     onClick={() => handleShowProducts(item)}
                   />
-                  <GrEdit style={{ fontSize: '1.5rem', cursor: 'pointer' }} />
+                  <GrEdit
+                    style={{ fontSize: '1.5rem', cursor: 'pointer' }}
+                    onClick={() => handleShowProducts(item)}
+                  />
                   <RiDeleteBin6Line
                     style={{ fontSize: '1.5rem', cursor: 'pointer' }}
                     onClick={() => handleDelete(index)}

@@ -1,21 +1,73 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
+import { IoCloudUploadOutline } from 'react-icons/io5';
 
 function AddTicket({ addNewTicket, CloseModalWindow, currentStatus }) {
   const [priority, setPriority] = useState('');
+  const [subject, setSubject] = useState('');
+  const [need, setNeed] = useState('');
+  const [description, setDescription] = useState('');
+  const [dragging, setDragging] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        CloseModalWindow(!currentStatus);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [CloseModalWindow, currentStatus]);
+
+  const handleDragEnter = e => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = e => {
+    e.preventDefault();
+    setDragging(false);
+  };
+
+  const handleDragOver = e => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDrop = e => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files[0];
+    setSelectedFile(file);
+    // Handle the dropped file here (e.g., upload or display preview)
+  };
+
+  const handleFileInputChange = e => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    // Handle file selection here
+  };
 
   const AddAndCloseModal = () => {
     const ticket = {
-      created_at: '2024-07-08T17:20:53.607447Z',
-      updated_at: '2024-07-08T17:20:53.607447Z',
-      subject: 'Add another support ticket',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      subject,
       status: 'open',
-      priority: 'low',
+      priority,
       user: 1,
+      need,
+      description,
+      file: selectedFile,
     };
-
-    // addNewProduct(newProduct);
 
     addNewTicket(ticket);
     CloseModalWindow(!currentStatus);
@@ -25,6 +77,7 @@ function AddTicket({ addNewTicket, CloseModalWindow, currentStatus }) {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 text-gray-500">
       <div
         className={`w-[60rem] font-thin flex flex-col gap-2 bg-white border rounded-xl `}
+        ref={modalRef}
       >
         <div className="flex justify-between items-center px-12 py-4 border-b">
           <p className="font-thin px-10">Submit a New Ticket</p>
@@ -47,6 +100,7 @@ function AddTicket({ addNewTicket, CloseModalWindow, currentStatus }) {
                   className="appearance-none border border-gray-300 rounded-full w-6 h-6
                    checked:bg-primary-light checked:border-transparent outline-offset-2  focus:ring-primary-light"
                   value="needSupport"
+                  onChange={e => setSubject(e.target.value)}
                 />
                 <label className="text-nowrap" htmlFor="needSupport">
                   Need Support
@@ -60,6 +114,7 @@ function AddTicket({ addNewTicket, CloseModalWindow, currentStatus }) {
                   className="appearance-none border border-gray-300 rounded-full w-6 h-6
                    checked:bg-primary-light checked:border-transparent outline-offset-2  focus:ring-primary-light"
                   value="suggestion"
+                  onChange={e => setSubject(e.target.value)}
                 />
                 <label className="text-nowrap" htmlFor="suggestion">
                   Have a Suggestion
@@ -77,6 +132,7 @@ function AddTicket({ addNewTicket, CloseModalWindow, currentStatus }) {
               name="need"
               id="need"
               className="outline-none border rounded-lg p-5"
+              onChange={e => setNeed(e.target.value)}
             />
           </div>
 
@@ -89,6 +145,7 @@ function AddTicket({ addNewTicket, CloseModalWindow, currentStatus }) {
               name="description"
               id="description"
               rows="5"
+              onChange={e => setDescription(e.target.value)}
             ></textarea>
           </div>
 
@@ -97,63 +154,66 @@ function AddTicket({ addNewTicket, CloseModalWindow, currentStatus }) {
             <div className="flex gap-6 p-4">
               <p
                 className={`border px-8 py-2 rounded-full cursor-pointer ${
-                  priority === 'high' ? 'bg-primary-light text-white' : null
+                  priority === 'High' ? 'bg-primary-light text-white' : null
                 }`}
-                onClick={() => setPriority('high')}
+                onClick={() => setPriority('High')}
               >
                 High
               </p>
               <p
                 className={`border px-8 py-2 rounded-full cursor-pointer ${
-                  priority === 'medium' ? 'bg-primary-light text-white' : null
+                  priority === 'Medium' ? 'bg-primary-light text-white' : null
                 }`}
-                onClick={() => setPriority('medium')}
+                onClick={() => setPriority('Medium')}
               >
                 Medium
               </p>
               <p
                 className={`border px-8 py-2 rounded-full cursor-pointer ${
-                  priority === 'low' ? 'bg-primary-light text-white' : null
+                  priority === 'Low' ? 'bg-primary-light text-white' : null
                 }`}
-                onClick={() => setPriority('low')}
+                onClick={() => setPriority('Low')}
               >
                 Low
               </p>
             </div>
           </div>
-
-          <div className="flex flex-col gap-4">
-            <label htmlFor="productLink" className="block">
-              Product Link
-            </label>
-            <div className="flex gap-4">
-              <label
-                className="py-4 px-6 flex-1 font-thin flex gap-2 border-2 rounded-xl"
-                htmlFor="whatsapp"
-              >
-                <input type="radio" id="whatsapp" name="linkType" />
-                WhatsApp
-              </label>
-              <label
-                className="py-4 px-6 flex-1 font-thin  flex gap-2 border-2 rounded-xl"
-                htmlFor="website"
-              >
-                <input type="radio" id="website" name="linkType" />
-                Website
-              </label>
-              <label
-                className="py-4 px-6 flex-1 font-thin  flex gap-2 border-2 rounded-xl"
-                htmlFor="phone"
-              >
-                <input type="radio" id="phone" name="linkType" />
-                Phone
-              </label>
-            </div>
+          <div
+            className={`flex flex-col border-dashed border-2  rounded-lg h-[10rem] w-full items-center justify-center ${
+              dragging ? 'bg-blue-100 border-blue-500' : 'border-gray-300'
+            }`}
+            onDragEnter={handleDragEnter}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onClick={() => document.getElementById('fileInput').click()}
+          >
+            <input
+              type="file"
+              id="fileInput"
+              name="productImage"
+              accept="image/*"
+              className="hidden"
+              onChange={handleFileInputChange}
+            />
+            {selectedFile ? (
+              <p className="text-gray-400">{selectedFile.name}</p>
+            ) : (
+              <div className="flex flex-col gap-4 items-center justify-center">
+                <IoCloudUploadOutline style={{ fontSize: '5rem' }} />
+                <p className={`text-gray-400 ${dragging ? 'hidden' : ''}`}>
+                  Drag and Drop files here
+                </p>
+              </div>
+            )}
+            {dragging && (
+              <p className="text-blue-500">Release to drop the file</p>
+            )}
           </div>
 
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 mt-6">
             <p
-              // onClick={() => CloseModalWindow(!currentStatus)}
+              onClick={() => CloseModalWindow(!currentStatus)}
               className="flex-1 flex items-center justify-center px-4 py-6 border rounded-xl border-primary-light hover:bg-primary-light hover:text-white cursor-pointer"
             >
               Cancel

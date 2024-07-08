@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function TakeInput({ type }) {
+function TakeInput({ type, setLinkValue }) {
   const [input, setInput] = useState('');
+
+  useEffect(() => {
+    setLinkValue(input);
+  }, [input, setLinkValue]);
 
   return (
     <div
@@ -49,6 +53,7 @@ function TakeInput({ type }) {
 
 TakeInput.propTypes = {
   type: PropTypes.string,
+  setLinkValue: PropTypes.func.isRequired,
 };
 
 export default TakeInput;

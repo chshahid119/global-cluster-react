@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination';
 import Filter from '../../components/ui/Filter';
 import BusinessDashboardHeader from '../../components/ui/Header';
 import PageDataHeader from '../../components/ui/PageDataHeader';
 import TableData from '../../components/ui/TableData';
+import { addTicket, fetchSupportTickets } from '../../services/api';
+import { ModalContext } from './../../App';
+import ActionNotification from './../../components/ActionNotification';
+import AddTicket from './../../components/AddTicket';
+import Button from './../../components/Button';
+import Modal from './../../components/Modal';
 import TicketCard from './../../components/ui/TicketCard';
 
-const ticketsData = [
+const ticketsDumyData = [
   {
     refId: 'ASB234444809',
     date: 'January 24, 2024',
@@ -64,7 +70,20 @@ const ticketsData = [
 ];
 
 function SupportTicket() {
+  const { showModal, setShowModal } = useContext(ModalContext);
+  const [showAction, setShowAction] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [ticketsData, setTicketsData] = useState([]);
+
+  useEffect(
+    () =>
+      async function () {
+        const data = await fetchSupportTickets();
+        setTicketsData(data);
+        // console.log(data);
+      },
+    [],
+  );
   const itemsPerPage = 5; // Number of items per page
 
   // Calculate total pages based on data length and items per page
@@ -85,16 +104,54 @@ function SupportTicket() {
     currentPage * itemsPerPage,
   );
 
+  async function addNewTicket(newTicket) {
+    try {
+      const addedTicket = await addTicket(newTicket);
+      setTicketsData([...ticketsData, addedTicket]);
+      setShowModal(false);
+      showTemporaryNotification();
+    } catch (error) {
+      console.error('Error adding product:', error.message);
+    }
+  }
+
+  function showTemporaryNotification() {
+    setShowAction(true);
+    setTimeout(() => {
+      setShowAction(false);
+    }, 1500);
+  }
+
   return (
     <div className="bg-gray-50">
       <BusinessDashboardHeader />
       <main className="mx-10 my-10 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md bg-white">
-        <section className="px-10 py-10">
+        <section className="px-20 py-20 flex justify-between items-center">
           <PageDataHeader
             name="Support Ticket"
             to="Support Ticket"
             btnText="Submit a ticket"
           />
+          <Button
+            onClick={() => setShowModal(!showModal)}
+            btnText="Submit a ticket"
+          />
+
+          {showModal && (
+            <Modal>
+              <AddTicket
+                CloseModalWindow={setShowModal}
+                currentStatus={showModal}
+                addNewTicket={addNewTicket}
+              />
+            </Modal>
+          )}
+
+          {showAction && (
+            <Modal>
+              <ActionNotification message="Ticket Added Successfully" />
+            </Modal>
+          )}
         </section>
         <section className=" p-10  bg-gray-50  rounded-xl m-20 flex gap-8">
           <TicketCard name="Total Complaints" numbers={250} />
