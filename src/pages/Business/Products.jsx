@@ -13,7 +13,7 @@ import PageDataHeader from '../../components/ui/PageDataHeader';
 import ProductsTicket from '../../components/ui/ProductTickets';
 import TableData from '../../components/ui/TableData';
 
-import { addProduct, fetchProducts } from '../../services/api';
+import { addProduct, BASE_URL, fetchProducts } from '../../services/api';
 
 const initialProductsData = [
   // Your initial products data
@@ -42,7 +42,8 @@ function Products() {
   }
 
   async function handleDelete(productId) {
-    const deleteApiUrl = `http://127.0.0.1:8000/api/products/${productId}`;
+    // 192.168.100.214:8000/api/
+    const deleteApiUrl = `${BASE_URL}/products/${productId}`;
 
     try {
       const response = await fetch(deleteApiUrl, {
@@ -66,7 +67,7 @@ function Products() {
   async function handleShowProductDetails(productId) {
     // console.log(productId)
 
-    const apiUrl = `http://127.0.0.1:8000/api/products/${productId}/`;
+    const apiUrl = `${BASE_URL}/products/${productId}/`;
     console.log(apiUrl);
 
     try {
@@ -103,7 +104,7 @@ function Products() {
   return (
     <div className="flex flex-col gap-8 bg-gray-50">
       <BusinessDashboardHeader />
-      <main className="m-6 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md bg-white">
+      <main className="m-10 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md bg-white">
         <div className="py-20 px-20 flex flex-col gap-10">
           <div className="flex justify-between items-center">
             <PageDataHeader name="Products" to="products" />

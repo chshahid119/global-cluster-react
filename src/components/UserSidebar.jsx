@@ -16,7 +16,7 @@ function UserSidebar() {
       <nav>
         <ul className="flex flex-col gap-6 p-20 text-white">
           <NavLink to="dashboard" className="py-4 px-8 ">
-            <li className="flex gap-6 items-center ">
+            <li className="flex gap-6 items-center">
               <PiChartPieSliceFill className="text-5xl" />
               <p>Dashboard</p>
             </li>

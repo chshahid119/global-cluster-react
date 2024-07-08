@@ -20,7 +20,7 @@ function BusinesSidebar() {
             </li>
           </NavLink>
           <NavLink to="products" className="py-4 px-8">
-            <li className="flex gap-6 items-center ">
+            <li className="flex gap-6 items-center">
               <AiOutlineProduct className="text-5xl" />
               <p>Products</p>
             </li>
