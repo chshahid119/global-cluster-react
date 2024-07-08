@@ -23,6 +23,27 @@ const productsDumyData = [
 function Dashboard() {
   const [productsData, setProducts] = useState(productsDumyData);
 
+  async function handleShowProductDetails(productId) {
+    // console.log(productId)
+
+    const apiUrl = `192.168.100.214:8000/api/products/${productId}/`;
+    console.log(apiUrl);
+
+    try {
+      const response = await fetch(apiUrl);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const productData = await response.json();
+
+      return productData;
+    } catch (error) {
+      console.error('Failed to fetch that product:', error.message);
+    }
+  }
+
   useEffect(() => {
     async function fetchData() {
       const data = await fetchProducts();
@@ -83,6 +104,7 @@ function Dashboard() {
         </div>
         <div className="px-4 py-8">
           <TableData
+            type="dashboard"
             data={productsData ? slicedTopData : productsDumyData}
             tableHeadNames={[
               'Product Name',
@@ -92,6 +114,7 @@ function Dashboard() {
               'Status',
               'Action',
             ]}
+            handleShowProductDetails={handleShowProductDetails}
           />
         </div>
       </div>

@@ -53,6 +53,13 @@ function TableData({
     setShowProductDetail(true);
   }
 
+  const convertStandardDate = strDate => {
+    if (!strDate) return '';
+    const date = new Date(strDate);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+
   return (
     <div className="overflow-hidden rounded-t-xl rounded-l-xl rounded-r-xl border-t border-l border-r">
       <table className="w-full text-xl">
@@ -149,11 +156,11 @@ function TableData({
               <tr key={index} className="border-t my-2">
                 <td className="p-6 flex gap-3 items-center">
                   <input type="checkbox" id="products" name="products" />
-                  <p>{item.refId}</p>
+                  <p>{item.id.split('-')}</p>
                 </td>
-                <td className="p-6">{item.date}</td>
-                <td className="p-6">{item.lastUpdated}</td>
-                <td className="p-6">{DecreaseDescription(item.subject)}</td>
+                <td className="p-6">{convertStandardDate(item.created_at)}</td>
+                <td className="p-6">{convertStandardDate(item.updated_at)}</td>
+                <td className="p-6">{item.subject}</td>
                 <td className="p-6">{DecreaseDescription(item.status)}</td>
 
                 <td className="p-6">
@@ -170,6 +177,45 @@ function TableData({
                   >
                     {item.priority}
                   </p>
+                </td>
+              </tr>
+            ))}
+
+          {type === 'dashboard' &&
+            data.map((item, index) => (
+              <tr key={index} className="border-t my-2">
+                <td className="p-6 flex gap-3 items-center">
+                  <input type="checkbox" id="products" name="products" />
+                  <div className="p-2 bg-orange-200">
+                    <img
+                      src={ProductImg}
+                      alt="product images for show off"
+                      className="w-10"
+                    />
+                  </div>
+                  <p>{item.name}</p>
+                </td>
+                <td className="p-6">{DecreaseDescription(item.description)}</td>
+                <td className="p-6">{item.shares}</td>
+                <td className="p-6">{item.traffic}</td>
+                <td className="p-6">
+                  <p
+                    className={`px-4 py-1 rounded-lg w-fit text-center ${
+                      item.status === 'Active'
+                        ? 'bg-green-100 text-green-500'
+                        : item.status === 'Pending'
+                        ? 'bg-blue-100 text-blue-500'
+                        : 'bg-red-100 text-red-500'
+                    }`}
+                  >
+                    {item.status}
+                  </p>
+                </td>
+                <td className="flex gap-4">
+                  <IoEyeOutline
+                    style={{ fontSize: '1.7rem', cursor: 'pointer' }}
+                    onClick={() => handleShowProducts(item)}
+                  />
                 </td>
               </tr>
             ))}
