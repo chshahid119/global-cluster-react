@@ -98,7 +98,8 @@ function UserDataTable({ data = [], tableHeadNames, type = 'default' }) {
                         : null
                     }`}
                   >
-                    {user.status}
+                    {user?.status.charAt(0).toUpperCase() +
+                      user?.status.slice(1)}
                   </p>
                 </td>
                 <td className="flex gap-4">

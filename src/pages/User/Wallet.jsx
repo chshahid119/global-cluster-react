@@ -1,121 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Filter from '../../components/ui/Filter';
 import BusinessDashboardHeader from '../../components/ui/Header';
 import TicketCard from '../../components/ui/TicketCard';
 import WalletCard from '../../components/WalletCard';
+import { fetchWalletData } from '../../services/api';
 import Pagination from './../../components/Pagination';
 import TableData from './../../components/ui/TableData';
 
-const walletData = [
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Declined',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-  {
-    refId: 'ASB2344448909',
-    date: 'January 24,2024',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing.....',
-    amount: 'N3,000',
-    status: 'Successfull',
-  },
-];
-
 function Wallet() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [walletData, setWalletData] = useState([]);
+
+  useEffect(
+    () =>
+      async function () {
+        const data = await fetchWalletData();
+        setWalletData(data);
+        console.log(data);
+      },
+    [],
+  );
   const itemsPerPage = 7;
 
   const handlePageChange = page => {
@@ -127,16 +31,49 @@ function Wallet() {
 
   const currentUser = walletData.slice(startIndex, endIndex);
 
+  const totalBalance = walletData.reduce((acc, currTransaction) => {
+    return acc + +currTransaction.amount;
+  }, 0);
+
+  const successfullTransactions = walletData.reduce((acc, currTransaction) => {
+    return currTransaction.status === 'successful' ||
+      currTransaction.status.toLowerCase() === 'successfull'
+      ? acc + 1
+      : acc + 0;
+  }, 0);
+
+  const pendingTransactions = walletData.reduce((acc, currTransaction) => {
+    return currTransaction.status.toLowerCase() === 'pending'
+      ? acc + 1
+      : acc + 0;
+  }, 0);
+
+  const declinedTransactions = walletData.reduce((acc, currTransaction) => {
+    return currTransaction.status.toLowerCase() === 'declined'
+      ? acc + 1
+      : acc + 0;
+  }, 0);
+
   return (
     <div className="bg-gray-50">
       <BusinessDashboardHeader />
       <main className="mx-10 my-10 p-10 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-md bg-white">
         <div className="flex items-center justify-between ">
-          <WalletCard />
+          <WalletCard totalBalance={totalBalance} />
 
           <section className="flex-1 p-10  bg-gray-50  rounded-xl m-20 flex gap-8">
-            <TicketCard name="No of Links Shared" numbers={520} />
-            <TicketCard name="Bonus Earned" numbers={4} />
+            <TicketCard
+              name="Successfull Transactions"
+              numbers={successfullTransactions}
+            />
+            <TicketCard
+              name="Pending Transactions"
+              numbers={pendingTransactions}
+            />
+            <TicketCard
+              name="Declined Transactions"
+              numbers={declinedTransactions}
+            />
           </section>
         </div>
 

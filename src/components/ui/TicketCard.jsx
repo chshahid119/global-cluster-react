@@ -15,7 +15,7 @@ function TicketCard({ name, numbers }) {
         </div>
         <div className="flex flex-col gap-2">
           <p className="text-3xl font-semibold">{numbers}</p>
-          <p className="">{name}</p>
+          <p className="text-xl">{name}</p>
         </div>
       </div>
     </div>
