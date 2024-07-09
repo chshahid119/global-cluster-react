@@ -8,6 +8,7 @@ import {
 import AdminLogin from './components/AdminLogin';
 import BusinessSignUp from './components/BusinessSignUp';
 import BusinessLayout from './Layouts/BusinessLayout';
+import AdminDashboard from './pages/Admin/Dashboard';
 import BusinessDashboard from './pages/Business/Dashboard';
 import BusinessProducts, {
   loader as productLoader,
@@ -17,7 +18,10 @@ import BusinessSignOut from './pages/Business/SingOut';
 import BusinessSupportTicket from './pages/Business/SupportTicket';
 import Login from './pages/Login';
 
+import AdminLayout from './Layouts/AdminLayout';
 import UserLayout from './Layouts/UserLayout';
+import AdminBonusManagement from './pages/Admin/BonusMangement';
+import AdminSupportCenter from './pages/Admin/SupportCenter';
 import UserDashboard from './pages/User/Dashboard';
 import UserNetwork from './pages/User/Network';
 import UserPayOut from './pages/User/Payout';
@@ -29,6 +33,21 @@ import UserSettings from './pages/User/Settings';
 import UserSignOut from './pages/User/SignOut';
 import UserSupportTicket from './pages/User/SupportTicket';
 import UserWallet from './pages/User/Wallet';
+
+import AdminUserRanking from './pages/Admin/UserRankings';
+
+import AdminPayout from './pages/Admin/Payout';
+import AdminProducts from './pages/Admin/Products.jsx';
+
+import AdminStafManagement from './pages/Admin/StafManagement';
+
+import AdminBusinessManage from './pages/Admin/ManageBusiness';
+
+import AdminUserManage from './pages/Admin/ManageUser';
+
+import AdminUserRegistrations from './pages/Admin/UserRegistrations';
+
+import AdminBusinessRegistrations from './pages/Admin/BusinessRegistrations';
 
 const router = createBrowserRouter([
   {
@@ -125,11 +144,65 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <AdminDashboard />,
+      },
+      {
+        path: 'user/registrations',
+        element: <AdminUserRegistrations />,
+      },
+      {
+        path: 'business/registrations',
+        element: <AdminBusinessRegistrations />,
+      },
+      {
+        path: 'user/manage',
+        element: <AdminUserManage />,
+      },
+      {
+        path: 'business/manage',
+        element: <AdminBusinessManage />,
+      },
+      {
+        path: 'staff/management',
+        element: <AdminStafManagement />,
+      },
+      {
+        path: 'wallet',
+        element: <UserWallet />,
+      },
+      {
+        path: 'products',
+        element: <AdminProducts />,
+      },
+
+      {
+        path: 'payout',
+        element: <AdminPayout />,
+      },
+      {
+        path: 'user/rankings',
+        element: <AdminUserRanking />,
+      },
+      {
+        path: 'bonus/management',
+        element: <AdminBonusManagement />,
+      },
+      {
+        path: 'support/center',
+        element: <AdminSupportCenter />,
+      },
+    ],
+  },
+  {
     path: '*',
     element: <Navigate to="/login" replace />, // Redirect any unmatched paths to login
   },
 ]);
-
 export const ModalContext = createContext();
 
 function App() {
