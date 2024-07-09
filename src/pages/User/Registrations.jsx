@@ -7,7 +7,7 @@ const userData = [
     user: 'Samuel',
     type: 'Individual',
     lastUpdated: 'January 20, 2024',
-    Email: 'Silasdahun@gmail.com',
+    email: 'Silasdahun@gmail.com',
     date: 'January 24,2024',
     status: 'Pending',
     phone: '0807331612',
@@ -18,7 +18,7 @@ const userData = [
     user: 'Samuel',
     type: 'Individual',
     lastUpdated: 'January 20, 2024',
-    Email: 'Silasdahun@gmail.com',
+    email: 'Silasdahun@gmail.com',
     date: 'January 24,2024',
     status: 'Approve',
     phone: '0807331612',
@@ -29,7 +29,7 @@ const userData = [
     user: 'Samuel',
     type: 'Individual',
     lastUpdated: 'January 20, 2024',
-    Email: 'Silasdahun@gmail.com',
+    email: 'Silasdahun@gmail.com',
     date: 'January 24,2024',
     status: 'Approve',
     phone: '0807331612',
@@ -40,7 +40,7 @@ const userData = [
     user: 'Samuel',
     type: 'Individual',
     lastUpdated: 'January 20, 2024',
-    Email: 'Silasdahun@gmail.com',
+    email: 'Silasdahun@gmail.com',
     date: 'January 24,2024',
     status: 'Approve',
     phone: '0807331612',
@@ -51,7 +51,7 @@ const userData = [
     user: 'Samuel',
     type: 'Individual',
     lastUpdated: 'January 20, 2024',
-    Email: 'Silasdahun@gmail.com',
+    email: 'Silasdahun@gmail.com',
     date: 'January 24,2024',
     status: 'Decline',
     phone: '0807331612',
@@ -62,7 +62,7 @@ const userData = [
     user: 'Samuel',
     type: 'Individual',
     lastUpdated: 'January 20, 2024',
-    Email: 'Silasdahun@gmail.com',
+    email: 'Silasdahun@gmail.com',
     date: 'January 24,2024',
     status: 'Decline',
     phone: '0807331612',
@@ -73,17 +73,16 @@ const userData = [
 
 function Registrations() {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items per page
+  const [usersDat, setUsersData] = useState([]);
 
-  // Calculate total pages based on data length and items per page
+  const itemsPerPage = 5;
+
   const totalPages = Math.ceil(userData.length / itemsPerPage);
 
-  // Function to handle page change
   const handlePageChange = pageNumber => {
     setCurrentPage(pageNumber);
   };
 
-  // Calculate start and end index for current page
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
   const endIndex = Math.min(currentPage * itemsPerPage, userData.length);
   const paginatedData = userData.slice(

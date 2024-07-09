@@ -1,20 +1,12 @@
-export const BASE_URL = 'http://192.168.100.151:8000/api';
+export const BASE_URL = 'http://127.0.0.1:8000/api';
 
-// 192.168.100.151:8000/
-// http://192.168.100.151:8000/api/support-tickets/
-// http://192.168.100.214:8000/api/products/
-
-// api/api.js
 export async function fetchProducts() {
   try {
     const response = await fetch(`${BASE_URL}/products/`, {
       method: 'GET', // Specify the request method
       headers: {
         'Content-Type': 'application/json',
-        // Include other headers if required, like authorization tokens
       },
-      // Uncomment if needed
-      // mode: 'cors', // Ensure CORS is handled correctly
     });
 
     if (!response.ok) {
@@ -22,11 +14,11 @@ export async function fetchProducts() {
     }
 
     const productsData = await response.json();
-    // console.log(productsData);
+
     return productsData;
   } catch (error) {
     console.error('Error fetching products:', error.message);
-    // Return an empty array or a default value in case of error
+
     return [];
   }
 }
@@ -45,8 +37,6 @@ export const addProduct = async newProduct => {
     photo: null,
   };
 
-  // console.log(defaultProduct);
-
   try {
     const response = await fetch(`${BASE_URL}/products/`, {
       method: 'POST',
@@ -60,7 +50,7 @@ export const addProduct = async newProduct => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response.json(); // Assuming backend returns the created product data
+    return response.json();
   } catch (error) {
     throw new Error(`Error adding product: ${error.message}`);
   }
@@ -69,13 +59,10 @@ export const addProduct = async newProduct => {
 export async function fetchSupportTickets() {
   try {
     const response = await fetch(`${BASE_URL}/support-tickets/`, {
-      method: 'GET', // Specify the request method
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        // Include other headers if required, like authorization tokens
       },
-      // Uncomment if needed
-      // mode: 'cors', // Ensure CORS is handled correctly
     });
 
     if (!response.ok) {
@@ -83,26 +70,16 @@ export async function fetchSupportTickets() {
     }
 
     const supportTicketData = await response.json();
-    // console.log(productsData);
+
     return supportTicketData;
   } catch (error) {
     console.error('Error fetching products:', error.message);
-    // Return an empty array or a default value in case of error
+
     return [];
   }
 }
 
 export async function addTicket(newTicket) {
-  // console.log(newTicket);
-  // const defaultProduct = {
-  //   created_at: '2024-07-08T17:21:05.311571Z',
-  //   updated_at: '2024-07-08T17:21:05.311571Z',
-  //   subject: 'shahid is my name',
-  //   status: 'Open',
-  //   priority: 'low',
-  //   user: 2,
-  // };
-
   console.log(newTicket);
 
   try {
@@ -118,7 +95,100 @@ export async function addTicket(newTicket) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return response.json(); // Assuming backend returns the created product data
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error adding product: ${error.message}`);
+  }
+}
+
+export async function fetchWalletData() {
+  try {
+    const response = await fetch(`${BASE_URL}/wallets/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const walletData = await response.json();
+
+    return walletData;
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+
+    return [];
+  }
+}
+
+export async function fetchPayoutsData() {
+  try {
+    const response = await fetch(`${BASE_URL}/payouts/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const payoutData = await response.json();
+
+    return payoutData;
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+
+    return [];
+  }
+}
+
+// http://127.0.0.1:8000/api/profile/
+export async function fetchUsersData() {
+  try {
+    const response = await fetch(`${BASE_URL}/profile/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const usersData = await response.json();
+    console.log(usersData);
+    return usersData;
+  } catch (error) {
+    console.error('Error fetching products:', error.message);
+
+    return [];
+  }
+}
+
+// http://127.0.0.1:8000/api/profile/
+async function SendProfileData(data) {
+  console.log(data);
+
+  try {
+    const response = await fetch(`${BASE_URL}/profile/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
   } catch (error) {
     throw new Error(`Error adding product: ${error.message}`);
   }

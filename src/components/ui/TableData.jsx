@@ -84,29 +84,32 @@ function TableData({
               <tr key={index} className="border-t my-2">
                 <td className="p-6 flex gap-3 items-center">
                   <input type="checkbox" id="products" name="products" />
-                  <p>{item.refId}</p>
+                  <p>{item.id.split('-')}</p>
                 </td>
                 <td className="p-6">{item.date}</td>
                 <td className="p-6">{item.amount}</td>
-                <td className="p-6">{item.paymentMethod}</td>
+                <td className="p-6">
+                  {item.payment_method.charAt(0).toUpperCase() +
+                    item.payment_method.slice(1).replace('_', '-')}
+                </td>
 
                 <td className="p-6">
                   <p
                     className={`px-4 py-1 rounded-xl w-fit text-center ${
-                      item.status === 'Paid'
+                      item.status.toLowerCase() === 'paid'
                         ? 'bg-green-100 text-green-500'
                         : null
                     } ${
-                      item.status === 'Declined'
+                      item.status.toLowerCase() === 'declined'
                         ? 'bg-red-100 text-red-500'
                         : null
                     }  ${
-                      item.status === 'Pending'
-                        ? 'bg-orange-100 text-orange-500'
+                      item.status.toLowerCase() === 'pending'
+                        ? 'bg-blue-100 text-blue-500'
                         : null
                     } `}
                   >
-                    {item.status}
+                    {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                   </p>
                 </td>
                 <td className="flex gap-4">
@@ -122,25 +125,26 @@ function TableData({
               <tr key={index} className="border-t my-2">
                 <td className="p-6 flex gap-3 items-center">
                   <input type="checkbox" id="products" name="products" />
-                  <p>{item.refId}</p>
+                  <p>{item.id.split('-')}</p>
                 </td>
-                <td className="p-6">{item.date}</td>
+                <td className="p-6">{convertStandardDate(item.date)}</td>
                 <td className="p-6">{DecreaseDescription(item.description)}</td>
                 <td className="p-6">{item.amount}</td>
 
                 <td className="p-6">
                   <p
                     className={`px-4 py-1 rounded-xl w-fit text-center ${
-                      item.status === 'Successfull'
+                      item.status.toLowerCase() === 'successfull' ||
+                      item.status.toLowerCase() === 'successful'
                         ? 'bg-green-100 text-green-500'
                         : null
                     } ${
-                      item.status === 'Declined'
+                      item.status.toLowerCase() === 'declined'
                         ? 'bg-red-100 text-red-500'
                         : null
                     }`}
                   >
-                    {item.status}
+                    {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                   </p>
                 </td>
                 <td className="flex gap-4">
@@ -156,27 +160,29 @@ function TableData({
               <tr key={index} className="border-t my-2">
                 <td className="p-6 flex gap-3 items-center">
                   <input type="checkbox" id="products" name="products" />
-                  <p>{item.id}</p>
+                  <p>{item.id.split('-')}</p>
                 </td>
                 <td className="p-6">{convertStandardDate(item.created_at)}</td>
                 <td className="p-6">{convertStandardDate(item.updated_at)}</td>
                 <td className="p-6">{item.subject}</td>
-                <td className="p-6">{item.status}</td>
+                <td className="p-6">
+                  {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                </td>
 
                 <td className="p-6">
                   <p
                     className={`px-4 py-1 rounded-xl w-fit text-center ${
-                      item.priority === 'High' || item.priority === 'high'
+                      item.priority.toLowerCase() === 'high'
                         ? 'bg-red-100 text-red-500'
-                        : item.priority === 'Medium' ||
-                          item.priority === 'medium'
+                        : item.priority.toLowerCase() === 'medium'
                         ? 'bg-blue-100 text-blue-500'
-                        : item.priority === 'low' || item.priority === 'Low'
+                        : item.priority.toLowerCase() === 'low'
                         ? 'bg-green-100 text-green-800'
                         : ''
                     }`}
                   >
-                    {item.priority}
+                    {item.priority.charAt(0).toUpperCase() +
+                      item.priority.slice(1)}
                   </p>
                 </td>
               </tr>
