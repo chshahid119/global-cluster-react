@@ -1,56 +1,60 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
 
-const data = [
-  { month: 'Jan', value: 29 },
-  { month: 'Feb', value: 41 },
-  { month: 'Mar', value: 30 },
-  { month: 'Apr', value: 30 },
-  { month: 'May', value: 37 },
-  { month: 'Jun', value: 41 },
-  { month: 'Jul', value: 37 },
-  { month: 'Aug', value: 42 },
-  { month: 'Sep', value: 42 },
-  { month: 'Oct', value: 42 },
-  { month: 'Nov', value: 58 },
-  { month: 'Dec', value: 58 },
-];
-
-function RefererStatisticsGraph() {
+function RefererStatisticsGraph({ data }) {
   return (
-    <div className='p-6' style={{ width: '100%', height: 300 }}>
+    <div
+      className="p-6"
+      style={{ width: '100%', height: 300 }}
+    >
       <ResponsiveContainer>
-        <LineChart 
-          data={data} 
+        <LineChart
+          data={data}
           margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
         >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis 
-            dataKey="month" 
-            axisLine={{ stroke: '#E5E7EB', strokeWidth: 1 }} 
+          <CartesianGrid
+            strokeDasharray="3 3"
+            vertical={false}
+          />
+          <XAxis
+            dataKey="month"
+            axisLine={{ stroke: '#E5E7EB', strokeWidth: 1 }}
             tickLine={false}
             dy={10}
             padding={{ left: 0, right: 0 }}
           />
-          <YAxis 
+          <YAxis
             axisLine={{ stroke: '#E5E7EB', strokeWidth: 1 }}
-            tickLine={false} 
+            tickLine={false}
             domain={[0, 'dataMax + 10']}
             padding={{ top: 20, bottom: 0 }}
           />
           <Tooltip />
-          <Line 
-            type="monotone" 
-            dataKey="value" 
-            stroke="#0080ff" 
-            strokeWidth={2} 
-            dot={{ r: 4, fill: "#0080ff" }} 
-            activeDot={{ r: 6, fill: "#0080ff" }}
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke="#0080ff"
+            strokeWidth={2}
+            dot={{ r: 4, fill: '#0080ff' }}
+            activeDot={{ r: 6, fill: '#0080ff' }}
           />
         </LineChart>
       </ResponsiveContainer>
     </div>
   )
+}
+
+RefererStatisticsGraph.propTypes = {
+  data: PropTypes.object,
 }
 
 export default RefererStatisticsGraph

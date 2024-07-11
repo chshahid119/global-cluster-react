@@ -1,5 +1,5 @@
-import React from 'react';
-import AdminDashboardHeader from './../../components/ui/Header';
+import React from 'react'
+import AdminDashboardHeader from './../../components/ui/Header'
 
 function Products() {
   return (
@@ -9,7 +9,7 @@ function Products() {
       </div>
       <main className="m-10 rounded-xl flex flex-col gap-4"></main>
     </div>
-  );
+  )
 }
 
-export default Products;
+export default Products

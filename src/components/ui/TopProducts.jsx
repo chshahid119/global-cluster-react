@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import BusinessProductImg from './../../assets/images/productImg.png';
+import PropTypes from 'prop-types'
+import React from 'react'
+import BusinessProductImg from './../../assets/images/productImg.png'
 
 const dumyproducts = [
   { name: 'Lorem Ipsum', shares: 195 },
@@ -8,11 +8,11 @@ const dumyproducts = [
   { name: 'Lorem Ipsum', shares: 122 },
   { name: 'Lorem Ipsum', shares: 110 },
   { name: 'Lorem Ipsum', shares: 87 },
-];
+]
 
 const TopProducts = ({ products }) => {
   return (
-    <div className="bg-white p-6  flex-1 flex flex-col gap-2 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl">
+    <div className="bg-white p-6 flex-1 flex flex-col gap-2 shadow-[0_0_10px_rgba(0,0,0,0.1)] rounded-xl">
       <h2 className="text-xl font-semibold mb-4">Top Products</h2>
       <div className="flex  justify-between text-xl text-gray-500 mb-4 border-b">
         <span>Name</span>
@@ -58,11 +58,11 @@ const TopProducts = ({ products }) => {
             ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
 TopProducts.propTypes = {
   products: PropTypes.array,
-};
+}
 
-export default TopProducts;
+export default TopProducts

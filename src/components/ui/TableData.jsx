@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { GrEdit } from 'react-icons/gr';
-import { IoEyeOutline } from 'react-icons/io5';
-import { RiDeleteBin6Line } from 'react-icons/ri';
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { GrEdit } from 'react-icons/gr'
+import { IoEyeOutline } from 'react-icons/io5'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 
-import ConfirmDeletion from '../ConfirmDeletion';
-import Modal from '../Modal';
-import ShowDetailComp from '../ShowDetailComp';
-import ProductImg from './../../assets/images/productImg.png';
+import ConfirmDeletion from '../ConfirmDeletion'
+import Modal from '../Modal'
+import ShowDetailComp from '../ShowDetailComp'
+import ProductImg from './../../assets/images/productImg.png'
 
 function TableData({
   data = [],
@@ -15,50 +15,51 @@ function TableData({
   type = 'default',
   onDelete,
   handleShowProductDetails,
+  handleDetail,
 }) {
-  const [confirmDeletion, setConfirmDeletion] = useState(false);
-  const [showProductDetail, setShowProductDetail] = useState(false);
-  const [productDetail, setProductDetail] = useState({});
-  const [deleteIndex, setDeleteIndex] = useState(null);
+  const [confirmDeletion, setConfirmDeletion] = useState(false)
+  const [showProductDetail, setShowProductDetail] = useState(false)
+  const [productDetail, setProductDetail] = useState({})
+  const [deleteIndex, setDeleteIndex] = useState(null)
 
   function DecreaseDescription(description) {
-    if (!description) return '';
+    if (!description) return ''
     return description.length > 50
       ? `${description.slice(0, 40)}...`
-      : description;
+      : description
   }
 
   function handleDelete(index) {
-    setDeleteIndex(index);
-    setConfirmDeletion(true);
+    setDeleteIndex(index)
+    setConfirmDeletion(true)
   }
 
   function handleConfirmDelete() {
     if (deleteIndex !== null) {
-      onDelete(deleteIndex);
-      setConfirmDeletion(false);
-      setDeleteIndex(null);
+      onDelete(deleteIndex)
+      setConfirmDeletion(false)
+      setDeleteIndex(null)
     }
   }
 
   function handleCancelDelete() {
-    console.log('Delete is cancelled');
-    setConfirmDeletion(false);
-    setDeleteIndex(null);
+    console.log('Delete is cancelled')
+    setConfirmDeletion(false)
+    setDeleteIndex(null)
   }
 
   async function handleShowProducts(item) {
-    const data = await handleShowProductDetails(item.id);
-    setProductDetail(data);
-    setShowProductDetail(true);
+    const data = await handleShowProductDetails(item.id)
+    setProductDetail(data)
+    setShowProductDetail(true)
   }
 
   const convertStandardDate = strDate => {
-    if (!strDate) return '';
-    const date = new Date(strDate);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
-  };
+    if (!strDate) return ''
+    const date = new Date(strDate)
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }
+    return date.toLocaleDateString('en-US', options)
+  }
 
   return (
     <div className="overflow-hidden rounded-t-xl rounded-l-xl rounded-r-xl border-t border-l border-r">
@@ -71,7 +72,11 @@ function TableData({
                 className={`p-6 ${index === 0 ? 'flex gap-3' : 'text-left'}`}
               >
                 {index === 0 && (
-                  <input type="checkbox" id="products" name="products" />
+                  <input
+                    type="checkbox"
+                    id="products"
+                    name="products"
+                  />
                 )}
                 <p>{item}</p>
               </th>
@@ -79,11 +84,73 @@ function TableData({
           </tr>
         </thead>
         <tbody className="bg-white">
+          {type === 'supportCenter' &&
+            data.map((item, index) => (
+              <tr
+                key={index}
+                className="border-t my-2"
+              >
+                <td className="p-6 flex gap-3 items-center underline cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="products"
+                    name="products"
+                  />
+                  <p
+                    className="text-primary-light"
+                    onClick={() => handleDetail(item)}
+                  >
+                    {item.subject}
+                  </p>
+                </td>
+                <td className="p-6">{item.submittedBy}</td>
+                <td className="p-6">
+                  <p
+                    className={`px-4 py-1 rounded-xl w-fit text-center ${
+                      item.status.toLowerCase() === 'status'
+                        ? 'bg-green-100 text-green-500'
+                        : null
+                    }`}
+                  >
+                    {' '}
+                    {item.status}
+                  </p>
+                </td>
+                <td className="p-6">
+                  <p
+                    className={`px-4 py-1 rounded-xl w-fit text-center ${
+                      item.priority.toLowerCase() === 'medium'
+                        ? 'bg-orange-100 text-orange-500'
+                        : null
+                    }`}
+                  >
+                    {' '}
+                    {item.priority.charAt(0).toUpperCase() +
+                      item.priority.slice(1)}
+                  </p>
+                </td>
+                <td className="p-6">{item.lastReply}</td>
+
+                <td className="flex gap-4">
+                  <IoEyeOutline
+                    style={{ fontSize: '1.5rem', cursor: 'pointer' }}
+                    onClick={() => handleShowProducts(item)}
+                  />
+                </td>
+              </tr>
+            ))}
           {type === 'payout' &&
             data.map((item, index) => (
-              <tr key={index} className="border-t my-2">
+              <tr
+                key={index}
+                className="border-t my-2"
+              >
                 <td className="p-6 flex gap-3 items-center">
-                  <input type="checkbox" id="products" name="products" />
+                  <input
+                    type="checkbox"
+                    id="products"
+                    name="products"
+                  />
                   <p>{item.id.split('-')}</p>
                 </td>
                 <td className="p-6">{item.date}</td>
@@ -122,9 +189,16 @@ function TableData({
             ))}
           {type === 'wallet' &&
             data.map((item, index) => (
-              <tr key={index} className="border-t my-2">
+              <tr
+                key={index}
+                className="border-t my-2"
+              >
                 <td className="p-6 flex gap-3 items-center">
-                  <input type="checkbox" id="products" name="products" />
+                  <input
+                    type="checkbox"
+                    id="products"
+                    name="products"
+                  />
                   <p>{item.id.split('-')}</p>
                 </td>
                 <td className="p-6">{convertStandardDate(item.date)}</td>
@@ -157,9 +231,16 @@ function TableData({
             ))}
           {type === 'supportTicket' &&
             data.map((item, index) => (
-              <tr key={index} className="border-t my-2">
+              <tr
+                key={index}
+                className="border-t my-2"
+              >
                 <td className="p-6 flex gap-3 items-center">
-                  <input type="checkbox" id="products" name="products" />
+                  <input
+                    type="checkbox"
+                    id="products"
+                    name="products"
+                  />
                   <p>{item.id.split('-')}</p>
                 </td>
                 <td className="p-6">{convertStandardDate(item.created_at)}</td>
@@ -187,12 +268,18 @@ function TableData({
                 </td>
               </tr>
             ))}
-
           {type === 'dashboard' &&
             data.map((item, index) => (
-              <tr key={index} className="border-t my-2">
+              <tr
+                key={index}
+                className="border-t my-2"
+              >
                 <td className="p-6 flex gap-3 items-center">
-                  <input type="checkbox" id="products" name="products" />
+                  <input
+                    type="checkbox"
+                    id="products"
+                    name="products"
+                  />
                   <div className="p-2 bg-orange-200">
                     <img
                       src={ProductImg}
@@ -226,12 +313,18 @@ function TableData({
                 </td>
               </tr>
             ))}
-
           {type === 'default' &&
             data.map((item, index) => (
-              <tr key={index} className="border-t my-2">
+              <tr
+                key={index}
+                className="border-t my-2"
+              >
                 <td className="p-6 flex gap-3 items-center">
-                  <input type="checkbox" id="products" name="products" />
+                  <input
+                    type="checkbox"
+                    id="products"
+                    name="products"
+                  />
                   <div className="p-2 bg-orange-200">
                     <img
                       src={ProductImg}
@@ -295,7 +388,7 @@ function TableData({
         </Modal>
       )}
     </div>
-  );
+  )
 }
 
 TableData.propTypes = {
@@ -304,6 +397,7 @@ TableData.propTypes = {
   type: PropTypes.string,
   onDelete: PropTypes.func,
   handleShowProductDetails: PropTypes.func,
-};
+  handleDetail: PropTypes.func,
+}
 
-export default TableData;
+export default TableData

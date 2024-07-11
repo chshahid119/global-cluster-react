@@ -1,15 +1,30 @@
-import React from 'react';
-import { GoChevronDown } from 'react-icons/go';
-import BonusStatistic from '../../components/BonusStatistic';
-import EarningCard from '../../components/EarningCard';
-import NewMember from '../../components/NewMember';
-import PermoteCard from '../../components/PermoteCard';
-import Ranking from '../../components/Ranking';
-import RefererStatisticsGraph from '../../components/RefererStatisticsGraph';
-import TeamPerfomance from '../../components/TeamPerfomance';
-import UserDashboardPayout from '../../components/UserDashboardPayout';
-import UserImg from './../../assets/images/userImg.png';
-import UserDashboardHeader from './../../components/ui/Header';
+import React from 'react'
+import { GoChevronDown } from 'react-icons/go'
+import BonusStatistic from '../../components/BonusStatistic'
+import EarningCard from '../../components/EarningCard'
+import NewMember from '../../components/NewMember'
+import PermoteCard from '../../components/PermoteCard'
+import Ranking from '../../components/Ranking'
+import RefererStatisticsGraph from '../../components/RefererStatisticsGraph'
+import TeamPerfomance from '../../components/TeamPerfomance'
+import UserDashboardPayout from '../../components/UserDashboardPayout'
+import UserImg from './../../assets/images/userImg.png'
+import UserDashboardHeader from './../../components/ui/Header'
+
+const dummyData = [
+  { month: 'Jan', value: 29 },
+  { month: 'Feb', value: 41 },
+  { month: 'Mar', value: 30 },
+  { month: 'Apr', value: 30 },
+  { month: 'May', value: 37 },
+  { month: 'Jun', value: 41 },
+  { month: 'Jul', value: 37 },
+  { month: 'Aug', value: 42 },
+  { month: 'Sep', value: 42 },
+  { month: 'Oct', value: 42 },
+  { month: 'Nov', value: 58 },
+  { month: 'Dec', value: 58 },
+]
 
 function Dashboard() {
   return (
@@ -53,9 +68,18 @@ function Dashboard() {
               iconBgColor="green"
               purpose="Direct Referal bonus"
             />
-            <BonusStatistic iconBgColor="pink" purpose="Matching bonus" />
-            <BonusStatistic iconBgColor="orange" purpose="Stair Step bonus" />
-            <BonusStatistic iconBgColor="pink" purpose="Board Breaker bonus" />
+            <BonusStatistic
+              iconBgColor="pink"
+              purpose="Matching bonus"
+            />
+            <BonusStatistic
+              iconBgColor="orange"
+              purpose="Stair Step bonus"
+            />
+            <BonusStatistic
+              iconBgColor="pink"
+              purpose="Board Breaker bonus"
+            />
             <BonusStatistic
               iconBgColor="green"
               purpose="Permote & Earn bonus"
@@ -71,7 +95,7 @@ function Dashboard() {
                 Today <GoChevronDown />
               </p>
             </div>
-            <RefererStatisticsGraph />
+            <RefererStatisticsGraph data={dummyData} />
           </div>
 
           <div className="flex-1 bg-white p-6 flex flex-col gap-20 rounded-md">
@@ -124,7 +148,7 @@ function Dashboard() {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard

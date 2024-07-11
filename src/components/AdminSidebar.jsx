@@ -19,8 +19,8 @@ import SidebarLogo from './SidebarLogo';
 function AdminSidebar() {
   const getNavLinkClass = ({ isActive }) =>
     isActive
-      ? 'py-4 px-8 bg-white text-primary-light rounded-lg'
-      : 'py-4 px-8 text-white rounded-lg';
+      ? 'py-4 px-8 bg-white text-primary-light rounded-[1.5rem]'
+      : 'py-4 px-8 text-white rounded-[1.5rem]';
 
   return (
     <div className="flex flex-col gap-6 items-center ">
@@ -35,7 +35,7 @@ function AdminSidebar() {
           </NavLink>
           <NavLink to="user/registrations" className={getNavLinkClass}>
             <li className="flex gap-6 items-center">
-              <HiOutlineUsers className="text-5xl" />
+              <HiOutlineUsers className="text-5xl"/>
               <p>User Registrations</p>
             </li>
           </NavLink>
